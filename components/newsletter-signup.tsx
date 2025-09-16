@@ -1,0 +1,77 @@
+'use client'
+
+import { useState } from 'react'
+import { motion } from 'framer-motion'
+
+export function NewsletterSignup() {
+  const [email, setEmail] = useState('')
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setStatus('loading')
+    
+    // Simulate API call
+    setTimeout(() => {
+      setStatus('success')
+      setEmail('')
+      setTimeout(() => setStatus('idle'), 3000)
+    }, 1000)
+  }
+
+  return (
+    <section className="py-20 bg-military-green dark:bg-gray-900">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center"
+        >
+          <h2 className="text-4xl font-military text-cream mb-4">
+            JOIN THE SQUAD
+          </h2>
+          <p className="text-cream/80 mb-8">
+            Get exclusive content, early access to merch drops, and tactical tips delivered to your inbox
+          </p>
+
+          <form onSubmit={handleSubmit} className="max-w-md mx-auto">
+            <div className="flex flex-col sm:flex-row gap-4">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
+                required
+                className="flex-1 px-4 py-3 rounded-lg bg-white/10 border border-cream/30 text-cream placeholder-cream/50 focus:outline-none focus:border-orange-accent"
+              />
+              
+              <button
+                type="submit"
+                disabled={status === 'loading'}
+                className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {status === 'loading' ? 'Joining...' : 'Join Now'}
+              </button>
+            </div>
+
+            {status === 'success' && (
+              <motion.p
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-4 text-orange-accent font-bold"
+              >
+                Welcome to the squad! Check your email for confirmation.
+              </motion.p>
+            )}
+          </form>
+
+          <p className="mt-6 text-cream/60 text-sm">
+            We respect your privacy. Unsubscribe at any time.
+          </p>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
