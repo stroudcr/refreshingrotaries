@@ -72,8 +72,8 @@ export function AboutMission() {
             JOIN THE MOVEMENT
           </h3>
           <p className="text-cream/80 mb-6 max-w-2xl mx-auto">
-            Whether you&apos;re a seasoned shooter, a gaming enthusiast, or someone interested in 
-            personal protection, there&apos;s a place for you in our community.
+            Whether you&apos;re a seasoned shooter, or someone interested in 
+            personal protection for the first time, there&apos;s a place for you.
           </p>
           <a
             href="/contact"

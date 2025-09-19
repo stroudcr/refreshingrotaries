@@ -1,6 +1,6 @@
 # Rapidfire Rachel Website
 
-A modern, responsive website for Rapidfire Rachel - Freedom-loving content creator, personal protection advocate, and gaming enthusiast.
+A modern, responsive website for Rapidfire Rachel - Freedom-loving American Woman Encouraging Others to Take an Actie Role in Their Personal Protection
 
 ## Features
 

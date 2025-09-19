@@ -6,12 +6,12 @@ import { Footer } from '@/components/footer'
 
 export const metadata: Metadata = {
   title: 'Rapidfire Rachel - Freedom, Gaming, Personal Protection',
-  description: 'Official website of Rapidfire Rachel - Content creator, personal protection advocate, and gaming enthusiast.',
+  description: 'Official website of Rapidfire Rachel - Freedom-loving American Woman Encouraging Others to Take an Actie Role in Their Personal Protection',
   keywords: 'Rapidfire Rachel, personal protection, gaming, outdoor enthusiast, freedom advocate',
   authors: [{ name: 'Rapidfire Rachel' }],
   openGraph: {
     title: 'Rapidfire Rachel',
-    description: 'Freedom-loving content creator, personal protection advocate, gaming enthusiast',
+    description: 'Freedom-loving American Woman Encouraging Others to Take an Actie Role in Their Personal Protection',
     url: 'https://rapidfirerachel.com',
     siteName: 'Rapidfire Rachel',
     locale: 'en_US',
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Rapidfire Rachel',
-    description: 'Freedom-loving content creator, personal protection advocate, gaming enthusiast',
+    description: 'Freedom-loving American Woman Encouraging Others to Take an Actie Role in Their Personal Protection',
     creator: '@rachelbee333',
   },
   robots: {
