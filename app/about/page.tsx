@@ -7,7 +7,7 @@ import { AboutGallery } from '@/components/about-gallery'
 
 export const metadata: Metadata = {
   title: 'About - Rapidfire Rachel',
-  description: 'Learn about Rapidfire Rachel - Freedom-loving American Woman Encouraging Others to Take an Actie Role in Their Personal Protection',
+  description: 'Learn about Rapidfire Rachel - Freedom-loving American Woman Encouraging Others to Take an Active Role in Their Personal Protection',
 }
 
 export default function AboutPage() {

@@ -39,7 +39,7 @@ export function Footer() {
           <div>
             <h3 className="text-2xl font-military mb-4">RAPIDFIRE RACHEL</h3>
             <p className="text-cream/80">
-              Freedom-loving American Woman Encouraging Others to Take an Actie Role in Their Personal Protection.
+              Freedom-loving American Woman Encouraging Others to Take an Active Role in Their Personal Protection.
             </p>
           </div>
 

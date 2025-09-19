@@ -1,6 +1,6 @@
 # Rapidfire Rachel Website
 
-A modern, responsive website for Rapidfire Rachel - Freedom-loving American Woman Encouraging Others to Take an Actie Role in Their Personal Protection
+A modern, responsive website for Rapidfire Rachel - Freedom-loving American Woman Encouraging Others to Take an Active Role in Their Personal Protection
 
 ## Features
 

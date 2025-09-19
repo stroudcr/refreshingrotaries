@@ -7,20 +7,8 @@ export function ContactInfo() {
     {
       icon: '📧',
       title: 'Email',
-      value: 'business@rapidfirerachel.com',
-      description: 'For business inquiries and collaborations',
-    },
-    {
-      icon: '📱',
-      title: 'Social Media',
-      value: '@rachelbee333',
-      description: 'Follow me on all platforms',
-    },
-    {
-      icon: '🎥',
-      title: 'Media Requests',
-      value: 'media@rapidfirerachel.com',
-      description: 'For interviews and press inquiries',
+      value: 'rapidfirerachel@gmail.com',
+      description: 'For interviews, business inquiries and collaborations',
     },
   ]
 
@@ -77,7 +65,7 @@ export function ContactInfo() {
               </svg>
             </a>
             <a
-              href="https://tiktok.com/@rachelbee333"
+              href="https://tiktok.com/@rapidfirerachel"
               target="_blank"
               rel="noopener noreferrer"
               className="text-cream hover:text-orange-accent hover:scale-110 transition-all duration-200"
