@@ -8,7 +8,6 @@ const categories = [
   { id: 'reviews', name: 'Reviews', count: 15 },
   { id: 'personal', name: 'Personal', count: 12 },
   { id: 'recommendations', name: 'Recommendations', count: 8 },
-  { id: 'gaming', name: 'Gaming', count: 7 },
 ]
 
 export function ArsenalCategories() {

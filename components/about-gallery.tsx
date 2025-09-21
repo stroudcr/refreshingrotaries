@@ -45,7 +45,7 @@ export function AboutGallery() {
             LIFE IN <span className="text-gradient">PICTURES</span>
           </h2>
           <p className="text-gray-600 dark:text-gray-400">
-            Moments from the range, gaming sessions, and adventures
+            Moments from the range, life, and adventures
           </p>
         </motion.div>
 

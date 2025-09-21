@@ -24,9 +24,7 @@ export function ArsenalHero() {
             <span>•</span>
             <span>🎯 Reviews</span>
             <span>•</span>
-            <span>💡 Tips</span>
-            <span>•</span>
-            <span>🎮 Gaming</span>
+            <span>💡 Ideas</span>
           </div>
         </motion.div>
       </div>

@@ -19,7 +19,7 @@ export function AboutHero() {
             <p className="text-xl text-cream/90 mb-6">
               Hey there! I&apos;m Rachel, but you might know me as Rapidfire Rachel. 
               I&apos;m a content creator passionate about personal protection, outdoor adventures, 
-              and gaming.
+              and freedom.
             </p>
             <p className="text-lg text-cream/80">
               With a background in competitive shooting and a love for all things tactical, 

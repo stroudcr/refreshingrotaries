@@ -5,9 +5,9 @@ import { Navigation } from '@/components/navigation'
 import { Footer } from '@/components/footer'
 
 export const metadata: Metadata = {
-  title: 'Rapidfire Rachel - Freedom, Gaming, Personal Protection',
+  title: 'Rapidfire Rachel - Freedom, Liberty, Personal Protection',
   description: 'Official website of Rapidfire Rachel - Freedom-loving American Woman Encouraging Others to Take an Active Role in Their Personal Protection',
-  keywords: 'Rapidfire Rachel, personal protection, gaming, outdoor enthusiast, freedom advocate',
+  keywords: 'Rapidfire Rachel, personal protection, outdoor enthusiast, freedom advocate',
   authors: [{ name: 'Rapidfire Rachel' }],
   openGraph: {
     title: 'Rapidfire Rachel',
