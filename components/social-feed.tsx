@@ -2,39 +2,65 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import { useEffect, useState } from 'react'
 
-const socialPosts = [
+const fallbackPosts = [
   {
-    id: 1,
-    platform: 'Instagram',
+    id: '1',
     image: 'https://images.unsplash.com/photo-1595432012174-e04c7db6c3f0?q=80&w=500',
     caption: 'Perfect day at the range! 🎯',
-    likes: '2.3K',
+    permalink: 'https://instagram.com/rachelbee333',
   },
   {
-    id: 2,
-    platform: 'TikTok',
+    id: '2',
     image: 'https://images.unsplash.com/photo-1593259037198-c720f4420d7f?q=80&w=500',
     caption: 'New gaming setup tour! 🎮',
-    likes: '5.7K',
+    permalink: 'https://instagram.com/rachelbee333',
   },
   {
-    id: 3,
-    platform: 'Instagram',
+    id: '3',
     image: 'https://images.unsplash.com/photo-1595432146570-a1731dd47f95?q=80&w=500',
     caption: 'Training day essentials 💪',
-    likes: '3.1K',
+    permalink: 'https://instagram.com/rachelbee333',
   },
   {
-    id: 4,
-    platform: 'YouTube',
+    id: '4',
     image: 'https://images.unsplash.com/photo-1606924735276-fbb5b325e933?q=80&w=500',
     caption: 'New video: Concealed Carry 101',
-    likes: '8.9K',
+    permalink: 'https://instagram.com/rachelbee333',
   },
 ]
 
+interface InstagramPost {
+  id: string
+  image: string
+  caption: string
+  permalink: string
+}
+
 export function SocialFeed() {
+  const [posts, setPosts] = useState<InstagramPost[]>(fallbackPosts)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    async function fetchInstagramPosts() {
+      try {
+        const response = await fetch('/api/instagram')
+        if (response.ok) {
+          const data = await response.json()
+          if (data.posts && data.posts.length > 0) {
+            setPosts(data.posts)
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching Instagram posts:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchInstagramPosts()
+  }, [])
   return (
     <section className="py-20 bg-white dark:bg-gray-950">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -53,14 +79,17 @@ export function SocialFeed() {
         </motion.div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {socialPosts.map((post, index) => (
-            <motion.div
+          {posts.map((post, index) => (
+            <motion.a
               key={post.id}
+              href={post.permalink}
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="relative group cursor-pointer"
+              className="relative group cursor-pointer block"
             >
               <div className="relative aspect-square rounded-lg overflow-hidden">
                 <Image
@@ -68,17 +97,18 @@ export function SocialFeed() {
                   alt={post.caption}
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-300"
+                  sizes="(max-width: 768px) 50vw, 25vw"
                 />
-                
+
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                    <p className="text-xs font-bold mb-1">{post.platform}</p>
+                    <p className="text-xs font-bold mb-1">Instagram</p>
                     <p className="text-sm line-clamp-2">{post.caption}</p>
-                    <p className="text-xs mt-1">❤️ {post.likes}</p>
+                    <p className="text-xs mt-1">Tap to view on Instagram</p>
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </motion.a>
           ))}
         </div>
 

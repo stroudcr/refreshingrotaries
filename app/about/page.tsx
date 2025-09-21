@@ -1,7 +1,6 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
 import { AboutHero } from '@/components/about-hero'
-import { AboutStory } from '@/components/about-story'
 import { AboutMission } from '@/components/about-mission'
 import { AboutGallery } from '@/components/about-gallery'
 
@@ -14,7 +13,6 @@ export default function AboutPage() {
   return (
     <>
       <AboutHero />
-      <AboutStory />
       <AboutMission />
       <AboutGallery />
     </>

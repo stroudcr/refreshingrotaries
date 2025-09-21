@@ -30,7 +30,7 @@ export function NewsletterSignup() {
           className="text-center"
         >
           <h2 className="text-4xl font-military text-cream mb-4">
-            JOIN THE SQUAD
+            JOIN THE NEWSLETTER
           </h2>
           <p className="text-cream/80 mb-8">
             Get exclusive content, early access to merch drops, and tactical tips delivered to your inbox
@@ -68,7 +68,7 @@ export function NewsletterSignup() {
           </form>
 
           <p className="mt-6 text-cream/60 text-sm">
-            We respect your privacy. Unsubscribe at any time.
+            We respect your privacy and hate spam as much as you. Unsubscribe at any time.
           </p>
         </motion.div>
       </div>
