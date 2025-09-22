@@ -10,12 +10,17 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@sanity/client": "^7.11.2",
+    "@sanity/image-url": "^1.2.0",
+    "@sanity/vision": "^4.9.0",
     "@vercel/analytics": "^1.5.0",
     "framer-motion": "^11.15.0",
     "next": "15.5.0",
+    "next-sanity": "^10.1.4",
     "next-themes": "^0.4.4",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "sanity": "^4.9.0"
   },
   "devDependencies": {
     "@types/node": "^22.10.6",
