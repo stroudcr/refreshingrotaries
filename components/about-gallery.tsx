@@ -5,27 +5,27 @@ import Image from 'next/image'
 
 const galleryImages = [
   {
-    src: 'https://images.unsplash.com/photo-1595432197907-e10af51de35f?q=80&w=800',
+    src: '/images/gallery/about1.jpg',
     alt: 'Range training',
   },
   {
-    src: 'https://images.unsplash.com/photo-1593259037002-4e37c5116483?q=80&w=800',
+    src: '/images/gallery/about2.jpg',
     alt: 'Gaming setup',
   },
   {
-    src: 'https://images.unsplash.com/photo-1584819757008-ce28c587bd23?q=80&w=800',
+    src: '/images/gallery/about3.jpg',
     alt: 'Outdoor adventure',
   },
   {
-    src: 'https://images.unsplash.com/photo-1606924735584-f340c6017ac9?q=80&w=800',
+    src: '/images/gallery/about4.JPG',
     alt: 'Tactical gear',
   },
   {
-    src: 'https://images.unsplash.com/photo-1595432090416-caf248a67513?q=80&w=800',
+    src: '/images/gallery/about5.jpg',
     alt: 'Competition',
   },
   {
-    src: 'https://images.unsplash.com/photo-1606924735276-fbb5b325e933?q=80&w=800',
+    src: '/images/gallery/about6.jpg',
     alt: 'Training session',
   },
 ]
