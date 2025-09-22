@@ -6,27 +6,27 @@ import Image from 'next/image'
 const galleryImages = [
   {
     src: '/images/gallery/about1.jpg',
-    alt: 'Range training',
+    alt: 'Rapidfire Rachel at the range',
   },
   {
     src: '/images/gallery/about2.jpg',
-    alt: 'Gaming setup',
+    alt: 'Rapidfire Rachel in action',
   },
   {
     src: '/images/gallery/about3.jpg',
-    alt: 'Outdoor adventure',
+    alt: 'Rapidfire Rachel training',
   },
   {
     src: '/images/gallery/about4.JPG',
-    alt: 'Tactical gear',
+    alt: 'Rapidfire Rachel with gear',
   },
   {
     src: '/images/gallery/about5.jpg',
-    alt: 'Competition',
+    alt: 'Rapidfire Rachel shooting',
   },
   {
     src: '/images/gallery/about6.jpg',
-    alt: 'Training session',
+    alt: 'Rapidfire Rachel practicing',
   },
 ]
 
