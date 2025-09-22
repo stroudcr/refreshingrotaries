@@ -18,21 +18,6 @@ export function ShopHero() {
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
             Exclusive merchandise designed for freedom-loving patriots and tactical enthusiasts
           </p>
-          
-          <div className="flex justify-center space-x-8 text-white">
-            <div>
-              <p className="text-3xl font-bold">🚚</p>
-              <p className="text-sm">Free Shipping $75+</p>
-            </div>
-            <div>
-              <p className="text-3xl font-bold">✨</p>
-              <p className="text-sm">Premium Quality</p>
-            </div>
-            <div>
-              <p className="text-3xl font-bold">🇺🇸</p>
-              <p className="text-sm">Made in USA</p>
-            </div>
-          </div>
         </motion.div>
       </div>
     </section>
