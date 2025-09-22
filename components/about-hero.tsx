@@ -36,7 +36,7 @@ export function AboutHero() {
           >
             <div className="relative h-[500px] rounded-lg overflow-hidden shadow-2xl">
               <Image
-                src="https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?q=80&w=2070"
+                src="/images/gallery/meet-rachel.jpg"
                 alt="Rachel"
                 fill
                 className="object-cover"
