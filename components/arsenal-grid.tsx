@@ -27,7 +27,7 @@ const fallbackPosts: ArsenalPost[] = [
     title: 'Best Concealed Carry Holsters for 2024',
     excerpt: 'After testing dozens of holsters, here are my top picks for comfortable, secure concealed carry.',
     categories: ['Reviews'],
-    mainImage: { asset: { _ref: 'image-1' }, alt: 'Concealed Carry Holsters' },
+    mainImage: null,
     slug: { current: 'best-concealed-carry-holsters-2024' },
     publishedAt: '2024-01-20',
     author: 'Admin',
@@ -37,7 +37,7 @@ const fallbackPosts: ArsenalPost[] = [
     title: 'My Journey: From Beginner to Competition Shooter',
     excerpt: 'How I went from never holding a firearm to competing at national level competitions.',
     categories: ['Personal'],
-    mainImage: { asset: { _ref: 'image-2' }, alt: 'Competition Shooting' },
+    mainImage: null,
     slug: { current: 'journey-beginner-to-competition' },
     publishedAt: '2024-01-18',
     author: 'Admin',
@@ -47,7 +47,7 @@ const fallbackPosts: ArsenalPost[] = [
     title: 'Ultimate Gaming Setup for Tactical Shooters',
     excerpt: 'Build the perfect gaming setup for dominating in tactical FPS games.',
     categories: ['Gaming'],
-    mainImage: { asset: { _ref: 'image-3' }, alt: 'Gaming Setup' },
+    mainImage: null,
     slug: { current: 'gaming-setup-tactical-shooters' },
     publishedAt: '2024-01-15',
     author: 'Admin',
@@ -57,7 +57,7 @@ const fallbackPosts: ArsenalPost[] = [
     title: 'Range Bag Essentials: What You Really Need',
     excerpt: 'Stop overpacking! Here\'s exactly what you need in your range bag for a successful day.',
     categories: ['Recommendations'],
-    mainImage: { asset: { _ref: 'image-4' }, alt: 'Range Bag Essentials' },
+    mainImage: null,
     slug: { current: 'range-bag-essentials' },
     publishedAt: '2024-01-12',
     author: 'Admin',
@@ -67,7 +67,7 @@ const fallbackPosts: ArsenalPost[] = [
     title: 'Women in the 2A Community: Breaking Barriers',
     excerpt: 'Celebrating the growing presence of women in shooting sports and personal protection.',
     categories: ['Personal'],
-    mainImage: { asset: { _ref: 'image-5' }, alt: 'Women in 2A Community' },
+    mainImage: null,
     slug: { current: 'women-2a-community' },
     publishedAt: '2024-01-10',
     author: 'Admin',
@@ -77,7 +77,7 @@ const fallbackPosts: ArsenalPost[] = [
     title: 'Top 5 Training Drills for Home Defense',
     excerpt: 'Practical drills you can practice to improve your home defense readiness.',
     categories: ['Recommendations'],
-    mainImage: { asset: { _ref: 'image-6' }, alt: 'Training Drills' },
+    mainImage: null,
     slug: { current: 'training-drills-home-defense' },
     publishedAt: '2024-01-08',
     author: 'Admin',
@@ -111,7 +111,7 @@ export function ArsenalGrid({ posts = fallbackPosts, activeCategory = 'all' }: A
                 <div className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg h-full flex flex-col">
                   <div className="relative h-48">
                     <Image
-                      src={post.mainImage ? urlFor(post.mainImage).url() : '/images/placeholder.jpg'}
+                      src={post.mainImage && post.mainImage.asset ? urlFor(post.mainImage).url() : '/images/placeholder.jpg'}
                       alt={post.mainImage?.alt || post.title}
                       fill
                       className="object-cover"
