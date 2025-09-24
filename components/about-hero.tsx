@@ -7,17 +7,27 @@ export function AboutHero() {
   return (
     <section className="relative py-20 bg-gradient-to-b from-military-green to-military-green-dark">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.h1
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-5xl font-military text-cream mb-6 lg:hidden text-center"
+        >
+          MEET RACHEL
+        </motion.h1>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
+            className="order-2 lg:order-1"
           >
-            <h1 className="text-5xl font-military text-cream mb-6">
+            <h1 className="text-5xl font-military text-cream mb-6 hidden lg:block">
               MEET RACHEL
             </h1>
             <p className="text-lg text-cream/90 mb-6">
-              Rachel Bee - known online as Rapidfire Rachel - is a lifelong firearms enthusiast, devoted Second Amendment advocate, and content creator dedicated to equipping others through faith, family, and freedom. Recognized by her community as a &quot;Freedom Loving American Woman,&quot; Rachel partners with leading brands in the outdoors and firearms industry to connect her audience with trusted products, training, and resources.
+              Rachel Bee, known online as Rapidfire Rachel, is a lifelong firearms enthusiast, devoted Second Amendment advocate, and content creator dedicated to equipping others through faith, family, and freedom. Recognized by her community as a &quot;Freedom Loving American Woman,&quot; Rachel partners with leading brands in the outdoors and firearms industry to connect her audience with trusted products, training, and resources.
             </p>
             <p className="text-lg text-cream/90 mb-6">
               Her journey began at an early age, spending weekends at the range with her father. By just three years old, she was already learning the fundamentals of shooting - laying the foundation for what would become a lifelong passion that she still shares with her dad to this day.
@@ -37,9 +47,9 @@ export function AboutHero() {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="relative"
+            className="relative order-1 lg:order-2"
           >
-            <div className="relative h-[500px] rounded-lg overflow-hidden shadow-2xl">
+            <div className="relative h-[400px] lg:h-[500px] rounded-lg overflow-hidden shadow-2xl">
               <Image
                 src="/images/gallery/meet-rachel.jpg"
                 alt="Rachel"
