@@ -49,12 +49,12 @@ export function AboutHero() {
             transition={{ duration: 0.8 }}
             className="relative order-1 lg:order-2"
           >
-            <div className="relative h-[400px] lg:h-[500px] rounded-lg overflow-hidden shadow-2xl">
+            <div className="relative h-[400px] md:h-[600px] lg:h-[500px] rounded-lg overflow-hidden shadow-2xl">
               <Image
                 src="/images/gallery/meet-rachel.jpg"
                 alt="Rachel"
                 fill
-                className="object-cover"
+                className="object-cover object-top"
               />
             </div>
           </motion.div>
