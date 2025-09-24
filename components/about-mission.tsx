@@ -4,24 +4,24 @@ import { motion } from 'framer-motion'
 
 const values = [
   {
-    icon: '🎯',
-    title: 'Excellence',
-    description: 'Striving for excellence in everything I do, from content creation to marksmanship.',
+    icon: '⛪',
+    title: 'Faith',
+    description: 'Grounded in Christian values, trusting God\'s guidance in all aspects of life and work.',
+  },
+  {
+    icon: '👫',
+    title: 'Family',
+    description: 'Prioritizing loved ones and passing down traditions, values, and skills to the next generation.',
   },
   {
     icon: '🗽',
     title: 'Freedom',
-    description: 'Championing individual liberty and the right to self-defense for all law-abiding citizens.',
+    description: 'Championing individual liberty and the constitutional right to self-defense for all Americans.',
   },
   {
-    icon: '🤝',
-    title: 'Community',
-    description: 'Building a supportive community of like-minded individuals who share our values.',
-  },
-  {
-    icon: '📚',
-    title: 'Education',
-    description: 'Providing quality education on personal protection, safety, and responsible ownership.',
+    icon: '🎯',
+    title: 'Firearms',
+    description: 'Promoting responsible ownership, safety education, and proficiency in shooting sports.',
   },
 ]
 
