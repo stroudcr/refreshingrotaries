@@ -60,28 +60,6 @@ export function AboutMission() {
             </motion.div>
           ))}
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="mt-16 bg-military-green dark:bg-gray-800 rounded-lg p-8 text-center"
-        >
-          <h3 className="text-2xl font-military text-cream mb-4">
-            JOIN THE MOVEMENT
-          </h3>
-          <p className="text-cream/80 mb-6 max-w-2xl mx-auto">
-            Whether you&apos;re a seasoned shooter, or someone interested in 
-            personal protection for the first time, there&apos;s a place for you.
-          </p>
-          <a
-            href="/contact"
-            className="btn-primary inline-block"
-          >
-            Get In Touch
-          </a>
-        </motion.div>
       </div>
     </section>
   )
