@@ -3,8 +3,25 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
+import { urlFor } from '@/sanity/lib/client'
 
-const posts = [
+interface ArsenalPost {
+  _id: string
+  title: string
+  slug: { current: string }
+  excerpt: string
+  mainImage: any
+  publishedAt: string
+  categories: string[]
+  author: string
+}
+
+interface ArsenalGridProps {
+  posts: ArsenalPost[]
+  activeCategory: string
+}
+
+const fallbackPosts = [
   {
     id: 1,
     title: 'Best Concealed Carry Holsters for 2024',
@@ -67,32 +84,41 @@ const posts = [
   },
 ]
 
-export function ArsenalGrid() {
+export function ArsenalGrid({ posts = fallbackPosts, activeCategory = 'all' }: ArsenalGridProps) {
+  const filteredPosts = activeCategory === 'all'
+    ? posts
+    : posts.filter(post =>
+        post.categories?.some(cat =>
+          cat.toLowerCase() === activeCategory.toLowerCase()
+        )
+      )
+
+  const displayPosts = filteredPosts.length > 0 ? filteredPosts : fallbackPosts
   return (
     <section className="py-20 bg-gray-50 dark:bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {posts.map((post, index) => (
+          {displayPosts.map((post: any, index: number) => (
             <motion.article
-              key={post.id}
+              key={post._id || post.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
               className="card-hover"
             >
-              <Link href={`/arsenal/${post.slug}`}>
+              <Link href={`/arsenal/${post.slug?.current || post.slug}`}>
                 <div className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg h-full flex flex-col">
                   <div className="relative h-48">
                     <Image
-                      src={post.image}
-                      alt={post.title}
+                      src={post.mainImage ? urlFor(post.mainImage).url() : post.image}
+                      alt={post.mainImage?.alt || post.title}
                       fill
                       className="object-cover"
                     />
                     <div className="absolute top-4 left-4">
                       <span className="bg-military-green text-cream px-3 py-1 rounded-full text-sm font-bold">
-                        {post.category}
+                        {post.categories?.[0] || post.category}
                       </span>
                     </div>
                   </div>
@@ -104,8 +130,8 @@ export function ArsenalGrid() {
                     </p>
                     
                     <div className="flex justify-between items-center text-sm text-gray-500 dark:text-gray-500">
-                      <span>{new Date(post.date).toLocaleDateString()}</span>
-                      <span>{post.readTime}</span>
+                      <span>{new Date(post.publishedAt || post.date).toLocaleDateString()}</span>
+                      <span>{post.readTime || '5 min read'}</span>
                     </div>
                   </div>
                 </div>

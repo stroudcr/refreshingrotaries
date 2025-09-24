@@ -1,23 +1,37 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useState } from 'react'
 
-const categories = [
-  { id: 'all', name: 'All Posts', count: 42 },
-  { id: 'reviews', name: 'Reviews', count: 15 },
-  { id: 'personal', name: 'Personal', count: 12 },
-  { id: 'recommendations', name: 'Recommendations', count: 8 },
+interface Category {
+  id: string
+  name: string
+  count: number
+}
+
+interface ArsenalCategoriesProps {
+  categories?: Category[]
+  activeCategory: string
+  setActiveCategory: (category: string) => void
+}
+
+const defaultCategories = [
+  { id: 'all', name: 'All Posts', count: 0 },
+  { id: 'reviews', name: 'Reviews', count: 0 },
+  { id: 'personal', name: 'Personal', count: 0 },
+  { id: 'recommendations', name: 'Recommendations', count: 0 },
 ]
 
-export function ArsenalCategories() {
-  const [activeCategory, setActiveCategory] = useState('all')
+export function ArsenalCategories({
+  categories = defaultCategories,
+  activeCategory,
+  setActiveCategory
+}: ArsenalCategoriesProps) {
 
   return (
     <section className="py-8 bg-white dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-wrap gap-4">
-          {categories.map((category) => (
+          {(categories.length > 0 ? categories : defaultCategories).map((category) => (
             <motion.button
               key={category.id}
               whileHover={{ scale: 1.05 }}

@@ -1,41 +1,108 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
+import { client } from '@/sanity/lib/client'
+import { POST_QUERY } from '@/sanity/lib/queries'
+import { urlFor } from '@/sanity/lib/client'
 import Image from 'next/image'
 import Link from 'next/link'
+import { PortableText } from '@portabletext/react'
+import { notFound } from 'next/navigation'
 
 interface BlogPostProps {
   slug: string
 }
 
+const portableTextComponents = {
+  types: {
+    image: ({ value }: any) => (
+      <div className="my-8">
+        <Image
+          src={urlFor(value).url()}
+          alt={value.alt || 'Blog image'}
+          width={800}
+          height={450}
+          className="rounded-lg w-full"
+        />
+        {value.caption && (
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 text-center">
+            {value.caption}
+          </p>
+        )}
+      </div>
+    ),
+  },
+}
+
+// Fallback post for when no Sanity data is available
+const fallbackPost = {
+  title: 'Best Concealed Carry Holsters for 2024',
+  body: [
+    {
+      _type: 'block',
+      children: [
+        {
+          _type: 'span',
+          text: 'After extensive testing and daily carry experience with dozens of holsters, I\'ve compiled my top recommendations for 2024. Whether you\'re new to concealed carry or looking to upgrade your setup, this guide will help you find the perfect holster for your needs.'
+        }
+      ]
+    }
+  ],
+  author: { name: 'Rapidfire Rachel' },
+  publishedAt: '2024-01-20',
+  categories: [{ title: 'Reviews' }],
+  mainImage: null,
+  excerpt: 'After testing dozens of holsters, here are my top picks for comfortable, secure concealed carry.'
+}
+
 export function BlogPost({ slug }: BlogPostProps) {
-  // This would normally fetch post data based on slug
-  const post = {
-    title: 'Best Concealed Carry Holsters for 2024',
-    content: `
-      <p>After extensive testing and daily carry experience with dozens of holsters, I've compiled my top recommendations for 2024. Whether you're new to concealed carry or looking to upgrade your setup, this guide will help you find the perfect holster for your needs.</p>
-      
-      <h2>What Makes a Great Holster?</h2>
-      <p>Before diving into specific recommendations, let's talk about what separates a good holster from a great one. The key factors I consider are comfort, retention, concealment, accessibility, and durability.</p>
-      
-      <h2>Top Pick: The Tactical Pro V3</h2>
-      <p>My number one recommendation for most carriers is the Tactical Pro V3. This hybrid holster combines the comfort of leather backing with the retention and durability of a kydex shell. After carrying it daily for six months, I can confidently say it's the most comfortable option I've tested.</p>
-      
-      <h2>Best Budget Option</h2>
-      <p>Not everyone wants to spend $100+ on a holster, and that's okay! The Budget Defender offers excellent value at under $40. While it lacks some premium features, it provides reliable retention and decent comfort for occasional carriers.</p>
-      
-      <h2>For Appendix Carry</h2>
-      <p>If you prefer appendix carry, the Sidecar 2.0 is hard to beat. The integrated magazine carrier keeps everything streamlined, and the adjustable wedge ensures comfort even when sitting.</p>
-      
-      <h2>Final Thoughts</h2>
-      <p>Remember, the best holster is the one you'll actually wear. Don't be afraid to try different styles and positions to find what works for your body type and lifestyle. Stay safe, train regularly, and carry responsibly!</p>
-    `,
-    author: 'Rapidfire Rachel',
-    date: '2024-01-20',
-    readTime: '8 min read',
-    category: 'Reviews',
-    image: 'https://images.unsplash.com/photo-1595432121329-a18f60c84eac?q=80&w=2070',
+  const [post, setPost] = useState<any>(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    async function fetchPost() {
+      try {
+        const data = await client.fetch(POST_QUERY, { slug })
+        if (data) {
+          setPost(data)
+        } else {
+          // Use fallback post if no data from Sanity
+          setPost(fallbackPost)
+        }
+      } catch (error) {
+        console.error('Error fetching post:', error)
+        // Use fallback post on error
+        setPost(fallbackPost)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchPost()
+  }, [slug])
+
+  if (loading) {
+    return (
+      <div className="py-20 bg-white dark:bg-gray-950">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="animate-pulse">
+            <div className="h-8 bg-gray-200 dark:bg-gray-800 rounded w-1/4 mb-6"></div>
+            <div className="h-12 bg-gray-200 dark:bg-gray-800 rounded mb-4"></div>
+            <div className="h-6 bg-gray-200 dark:bg-gray-800 rounded w-1/2 mb-8"></div>
+            <div className="h-96 bg-gray-200 dark:bg-gray-800 rounded mb-8"></div>
+            <div className="space-y-4">
+              <div className="h-4 bg-gray-200 dark:bg-gray-800 rounded"></div>
+              <div className="h-4 bg-gray-200 dark:bg-gray-800 rounded"></div>
+              <div className="h-4 bg-gray-200 dark:bg-gray-800 rounded"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
   }
+
+  if (!post) return null
 
   return (
     <>
@@ -53,36 +120,135 @@ export function BlogPost({ slug }: BlogPostProps) {
           </Link>
 
           <div className="mb-8">
-            <span className="inline-block bg-military-green text-cream px-3 py-1 rounded-full text-sm font-bold mb-4">
-              {post.category}
-            </span>
-            
+            {post.categories && post.categories.length > 0 && (
+              <span className="inline-block bg-military-green text-cream px-3 py-1 rounded-full text-sm font-bold mb-4">
+                {post.categories[0].title || post.categories[0]}
+              </span>
+            )}
+
             <h1 className="text-4xl md:text-5xl font-military mb-4">
               {post.title}
             </h1>
-            
+
             <div className="flex items-center text-gray-600 dark:text-gray-400 space-x-4">
-              <span>{post.author}</span>
+              {post.author && <span>{post.author.name || post.author}</span>}
               <span>•</span>
-              <span>{new Date(post.date).toLocaleDateString()}</span>
+              <span>{new Date(post.publishedAt).toLocaleDateString()}</span>
               <span>•</span>
-              <span>{post.readTime}</span>
+              <span>5 min read</span>
             </div>
           </div>
 
-          <div className="relative h-96 mb-12 rounded-lg overflow-hidden">
-            <Image
-              src={post.image}
-              alt={post.title}
-              fill
-              className="object-cover"
-            />
+          {/* Main Image */}
+          {post.mainImage && (
+            <div className="relative h-96 mb-12 rounded-lg overflow-hidden">
+              <Image
+                src={urlFor(post.mainImage).url()}
+                alt={post.mainImage.alt || post.title}
+                fill
+                className="object-cover"
+              />
+            </div>
+          )}
+
+          {/* Product Details (if applicable) */}
+          {post.productDetails && (
+            <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 mb-12">
+              <h2 className="text-2xl font-bold mb-4">Product Details</h2>
+              <dl className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {post.productDetails.brand && (
+                  <div>
+                    <dt className="font-semibold text-gray-600 dark:text-gray-400">Brand</dt>
+                    <dd>{post.productDetails.brand}</dd>
+                  </div>
+                )}
+                {post.productDetails.model && (
+                  <div>
+                    <dt className="font-semibold text-gray-600 dark:text-gray-400">Model</dt>
+                    <dd>{post.productDetails.model}</dd>
+                  </div>
+                )}
+                {post.productDetails.caliber && (
+                  <div>
+                    <dt className="font-semibold text-gray-600 dark:text-gray-400">Specifications</dt>
+                    <dd>{post.productDetails.caliber}</dd>
+                  </div>
+                )}
+                {post.productDetails.price && (
+                  <div>
+                    <dt className="font-semibold text-gray-600 dark:text-gray-400">Price</dt>
+                    <dd>{post.productDetails.price}</dd>
+                  </div>
+                )}
+                {post.productDetails.rating && (
+                  <div>
+                    <dt className="font-semibold text-gray-600 dark:text-gray-400">Rating</dt>
+                    <dd className="flex">
+                      {[...Array(5)].map((_, i) => (
+                        <svg
+                          key={i}
+                          className={`w-5 h-5 ${
+                            i < post.productDetails.rating
+                              ? 'text-orange-accent'
+                              : 'text-gray-300 dark:text-gray-600'
+                          }`}
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      ))}
+                    </dd>
+                  </div>
+                )}
+              </dl>
+              {post.productDetails.purchaseLink && (
+                <a
+                  href={post.productDetails.purchaseLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary inline-block mt-6"
+                >
+                  View Product
+                </a>
+              )}
+            </div>
+          )}
+
+          {/* Content */}
+          <div className="prose prose-lg dark:prose-invert max-w-none">
+            {post.body && (
+              <PortableText
+                value={post.body}
+                components={portableTextComponents}
+              />
+            )}
           </div>
 
-          <div 
-            className="prose prose-lg dark:prose-invert max-w-none"
-            dangerouslySetInnerHTML={{ __html: post.content }}
-          />
+          {/* Gallery */}
+          {post.gallery && post.gallery.length > 0 && (
+            <div className="mt-12">
+              <h2 className="text-2xl font-bold mb-6">Gallery</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {post.gallery.map((image: any, index: number) => (
+                  <div key={index}>
+                    <Image
+                      src={urlFor(image).url()}
+                      alt={image.alt || `Gallery image ${index + 1}`}
+                      width={448}
+                      height={336}
+                      className="rounded-lg w-full"
+                    />
+                    {image.caption && (
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                        {image.caption}
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           <div className="mt-12 p-8 bg-military-green dark:bg-gray-800 rounded-lg">
             <h3 className="text-2xl font-military text-cream mb-4">
@@ -92,7 +258,7 @@ export function BlogPost({ slug }: BlogPostProps) {
               Got questions or want to share your experience? Hit me up on social media!
             </p>
             <div className="flex space-x-6">
-              <a href="https://instagram.com/rachelbee333" target="_blank" rel="noopener noreferrer" 
+              <a href="https://instagram.com/rachelbee333" target="_blank" rel="noopener noreferrer"
                 className="text-cream hover:text-orange-accent transition-colors flex items-center space-x-2">
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
@@ -117,37 +283,6 @@ export function BlogPost({ slug }: BlogPostProps) {
           </div>
         </motion.div>
       </article>
-
-      <section className="bg-gray-50 dark:bg-gray-900 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-military text-center mb-12">
-            MORE FROM THE <span className="text-gradient">ARSENAL</span>
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[1, 2, 3].map((item) => (
-              <Link key={item} href={`/arsenal/post-${item}`}>
-                <div className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg card-hover">
-                  <div className="relative h-48">
-                    <Image
-                      src={`https://images.unsplash.com/photo-159543212${item}329-a18f60c84eac?q=80&w=800`}
-                      alt="Related post"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-lg font-bold mb-2">Related Article {item}</h3>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm">
-                      Quick preview of related content...
-                    </p>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
     </>
   )
 }
