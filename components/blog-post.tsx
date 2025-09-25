@@ -132,10 +132,8 @@ export function BlogPost({ slug }: BlogPostProps) {
 
             <div className="flex items-center text-gray-600 dark:text-gray-400 space-x-4">
               {post.author && <span>{post.author.name || post.author}</span>}
-              <span>•</span>
+              {post.author && <span>•</span>}
               <span>{new Date(post.publishedAt).toLocaleDateString()}</span>
-              <span>•</span>
-              <span>5 min read</span>
             </div>
           </div>
 
@@ -151,69 +149,6 @@ export function BlogPost({ slug }: BlogPostProps) {
             </div>
           )}
 
-          {/* Product Details (if applicable) */}
-          {post.productDetails && (
-            <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 mb-12">
-              <h2 className="text-2xl font-bold mb-4">Product Details</h2>
-              <dl className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {post.productDetails.brand && (
-                  <div>
-                    <dt className="font-semibold text-gray-600 dark:text-gray-400">Brand</dt>
-                    <dd>{post.productDetails.brand}</dd>
-                  </div>
-                )}
-                {post.productDetails.model && (
-                  <div>
-                    <dt className="font-semibold text-gray-600 dark:text-gray-400">Model</dt>
-                    <dd>{post.productDetails.model}</dd>
-                  </div>
-                )}
-                {post.productDetails.caliber && (
-                  <div>
-                    <dt className="font-semibold text-gray-600 dark:text-gray-400">Specifications</dt>
-                    <dd>{post.productDetails.caliber}</dd>
-                  </div>
-                )}
-                {post.productDetails.price && (
-                  <div>
-                    <dt className="font-semibold text-gray-600 dark:text-gray-400">Price</dt>
-                    <dd>{post.productDetails.price}</dd>
-                  </div>
-                )}
-                {post.productDetails.rating && (
-                  <div>
-                    <dt className="font-semibold text-gray-600 dark:text-gray-400">Rating</dt>
-                    <dd className="flex">
-                      {[...Array(5)].map((_, i) => (
-                        <svg
-                          key={i}
-                          className={`w-5 h-5 ${
-                            i < post.productDetails.rating
-                              ? 'text-orange-accent'
-                              : 'text-gray-300 dark:text-gray-600'
-                          }`}
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                        </svg>
-                      ))}
-                    </dd>
-                  </div>
-                )}
-              </dl>
-              {post.productDetails.purchaseLink && (
-                <a
-                  href={post.productDetails.purchaseLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary inline-block mt-6"
-                >
-                  View Product
-                </a>
-              )}
-            </div>
-          )}
 
           {/* Content */}
           <div className="prose prose-lg dark:prose-invert max-w-none">

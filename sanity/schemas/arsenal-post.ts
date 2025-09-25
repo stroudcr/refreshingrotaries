@@ -59,52 +59,6 @@ export default defineType({
       type: 'blockContent',
     }),
     defineField({
-      name: 'productDetails',
-      title: 'Product Details',
-      type: 'object',
-      fields: [
-        {
-          name: 'brand',
-          title: 'Brand',
-          type: 'string',
-        },
-        {
-          name: 'model',
-          title: 'Model',
-          type: 'string',
-        },
-        {
-          name: 'caliber',
-          title: 'Caliber/Specifications',
-          type: 'string',
-        },
-        {
-          name: 'price',
-          title: 'Price',
-          type: 'string',
-        },
-        {
-          name: 'purchaseLink',
-          title: 'Purchase Link',
-          type: 'url',
-        },
-        {
-          name: 'rating',
-          title: 'Rating',
-          type: 'number',
-          options: {
-            list: [
-              { title: '1 Star', value: 1 },
-              { title: '2 Stars', value: 2 },
-              { title: '3 Stars', value: 3 },
-              { title: '4 Stars', value: 4 },
-              { title: '5 Stars', value: 5 },
-            ],
-          },
-        },
-      ],
-    }),
-    defineField({
       name: 'gallery',
       title: 'Gallery',
       type: 'array',
