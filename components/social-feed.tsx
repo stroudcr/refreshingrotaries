@@ -4,33 +4,6 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
-const fallbackPosts = [
-  {
-    id: '1',
-    image: 'https://images.unsplash.com/photo-1595432012174-e04c7db6c3f0?q=80&w=500',
-    caption: 'Perfect day at the range! 🎯',
-    permalink: 'https://instagram.com/rachelbee333',
-  },
-  {
-    id: '2',
-    image: 'https://images.unsplash.com/photo-1593259037198-c720f4420d7f?q=80&w=500',
-    caption: 'New gaming setup tour! 🎮',
-    permalink: 'https://instagram.com/rachelbee333',
-  },
-  {
-    id: '3',
-    image: 'https://images.unsplash.com/photo-1595432146570-a1731dd47f95?q=80&w=500',
-    caption: 'Training day essentials 💪',
-    permalink: 'https://instagram.com/rachelbee333',
-  },
-  {
-    id: '4',
-    image: 'https://images.unsplash.com/photo-1606924735276-fbb5b325e933?q=80&w=500',
-    caption: 'New video: Concealed Carry 101',
-    permalink: 'https://instagram.com/rachelbee333',
-  },
-]
-
 interface InstagramPost {
   id: string
   image: string
@@ -39,11 +12,11 @@ interface InstagramPost {
 }
 
 export function SocialFeed() {
-  const [posts, setPosts] = useState<InstagramPost[]>(fallbackPosts)
+  const [posts, setPosts] = useState<InstagramPost[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    async function fetchInstagramPosts() {
+    const fetchPosts = async () => {
       try {
         const response = await fetch('/api/instagram')
         if (response.ok) {
@@ -59,7 +32,7 @@ export function SocialFeed() {
       }
     }
 
-    fetchInstagramPosts()
+    fetchPosts()
   }, [])
   return (
     <section className="py-20 bg-white dark:bg-gray-950">
