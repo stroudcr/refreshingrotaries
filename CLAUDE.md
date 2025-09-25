@@ -53,6 +53,22 @@ npm run type-check # TypeScript type checking
   - `INSTAGRAM_ACCESS_TOKEN`
   - `INSTAGRAM_ACCOUNT_ID`
 
+### Printful Integration
+- **API Client**: `lib/printful.ts` - Handles product fetching
+- **API Route**: `app/api/printful/products/route.ts` - Fetches products from Printful
+- **Checkout Component**: `components/printful-checkout.tsx` - Handles Quick Store integration
+- **Required Environment Variables**:
+  - `PRINTFUL_API_KEY` (for product fetching)
+  - `NEXT_PUBLIC_PRINTFUL_QUICK_STORE_URL` (for checkout - US only)
+
+#### Setting Up Printful Quick Store:
+1. Go to Printful Dashboard → Stores → Quick Stores (US merchants only)
+2. Click "Create store now"
+3. Complete store setup (name, URL, products, pricing)
+4. Copy your Quick Store URL (format: https://your-store.printful.me)
+5. Add to `.env.local`: `NEXT_PUBLIC_PRINTFUL_QUICK_STORE_URL=https://your-store.printful.me`
+6. Set up payouts: Billing → Quick Stores payments → Set up payouts
+
 ### Image Handling
 - Next.js Image component with configured remote patterns for:
   - images.unsplash.com

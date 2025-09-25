@@ -14,6 +14,18 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'cdn.sanity.io',
       },
+      {
+        protocol: 'https',
+        hostname: 'files.cdn.printful.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'printful.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.printful.com',
+      },
     ],
   },
 }

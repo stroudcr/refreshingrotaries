@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
+import { PrintfulCheckoutButton } from './printful-checkout'
 
 interface PrintfulVariant {
   id: number
@@ -200,21 +202,18 @@ export function ProductGrid() {
                         animate={{ opacity: 1 }}
                         className="absolute inset-0 bg-black/50 flex items-center justify-center"
                       >
-                        <button
+                        <PrintfulCheckoutButton
+                          product={product}
                           className="btn-primary"
-                          onClick={() => {
-                            // Add Printful checkout integration here
-                            console.log('Add to cart:', product.sync_product?.id)
-                          }}
                         >
-                          View Product
-                        </button>
+                          Quick Shop
+                        </PrintfulCheckoutButton>
                       </motion.div>
                     )}
                   </div>
 
-                  <div className="p-6">
-                    <h3 className="text-lg font-bold mb-2">
+                  <Link href={`/shop/product/${product.sync_product?.id || product.id}`} className="block p-6">
+                    <h3 className="text-lg font-bold mb-2 hover:text-orange-accent transition-colors">
                       {product.sync_product?.name || 'Unnamed Product'}
                     </h3>
                     <p className="text-2xl font-bold text-orange-accent">
@@ -225,7 +224,7 @@ export function ProductGrid() {
                         {product.sync_variants.length} variants available
                       </p>
                     )}
-                  </div>
+                  </Link>
                 </div>
               </motion.div>
             )
