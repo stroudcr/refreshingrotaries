@@ -2,7 +2,6 @@ import { Metadata } from 'next'
 import Image from 'next/image'
 import { AboutHero } from '@/components/about-hero'
 import { AboutMission } from '@/components/about-mission'
-import { AboutGallery } from '@/components/about-gallery'
 
 export const metadata: Metadata = {
   title: 'About - Rapidfire Rachel',
@@ -14,7 +13,6 @@ export default function AboutPage() {
     <>
       <AboutHero />
       <AboutMission />
-      <AboutGallery />
     </>
   )
 }

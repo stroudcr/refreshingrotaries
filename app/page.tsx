@@ -1,6 +1,6 @@
 import { HeroSection } from '@/components/hero-section'
 import { ContentHighlights } from '@/components/content-highlights'
-import { SocialFeed } from '@/components/social-feed'
+import { AboutGallery } from '@/components/about-gallery'
 import { NewsletterSignup } from '@/components/newsletter-signup'
 
 export default function HomePage() {
@@ -8,7 +8,7 @@ export default function HomePage() {
     <>
       <HeroSection />
       <ContentHighlights />
-      <SocialFeed />
+      <AboutGallery />
       <NewsletterSignup />
     </>
   )
