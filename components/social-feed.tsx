@@ -13,7 +13,7 @@ interface InstagramPost {
 
 export function SocialFeed() {
   const [posts, setPosts] = useState<InstagramPost[]>([])
-  const [loading, setLoading] = useState(true)
+  const [, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchPosts = async () => {
