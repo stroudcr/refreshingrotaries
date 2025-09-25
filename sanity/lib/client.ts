@@ -11,6 +11,8 @@ export const client = createClient({
 const builder = imageUrlBuilder(client)
 
 export function urlFor(source: any) {
-  if (!source) return { url: () => '/images/placeholder.jpg' }
+  if (!source || !source.asset) {
+    return { url: () => '/images/placeholder.jpg' }
+  }
   return builder.image(source)
 }

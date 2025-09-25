@@ -6,7 +6,10 @@ export const POSTS_QUERY = groq`
     title,
     slug,
     excerpt,
-    mainImage,
+    mainImage {
+      asset->,
+      alt
+    },
     publishedAt,
     "categories": categories[]->title,
     "author": author->name
@@ -19,18 +22,34 @@ export const POST_QUERY = groq`
     title,
     slug,
     excerpt,
-    mainImage,
+    mainImage {
+      asset->,
+      alt
+    },
     publishedAt,
-    body,
+    body[]{
+      ...,
+      _type == "image" => {
+        ...,
+        asset->
+      }
+    },
     productDetails,
-    gallery,
+    gallery[] {
+      asset->,
+      alt,
+      caption
+    },
     "categories": categories[]->{
       title,
       slug
     },
     "author": author->{
       name,
-      image,
+      image {
+        asset->,
+        alt
+      },
       bio
     }
   }
@@ -42,7 +61,10 @@ export const POSTS_BY_CATEGORY_QUERY = groq`
     title,
     slug,
     excerpt,
-    mainImage,
+    mainImage {
+      asset->,
+      alt
+    },
     publishedAt,
     "categories": categories[]->title,
     "author": author->name
