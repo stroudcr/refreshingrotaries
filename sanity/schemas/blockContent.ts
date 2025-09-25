@@ -58,17 +58,5 @@ export default defineType({
         },
       ],
     }),
-    defineArrayMember({
-      type: 'code',
-      options: {
-        language: 'text',
-        languageAlternatives: [
-          { title: 'Plain text', value: 'text' },
-          { title: 'JavaScript', value: 'javascript' },
-          { title: 'HTML', value: 'html' },
-          { title: 'CSS', value: 'css' },
-        ],
-      },
-    }),
   ],
 })

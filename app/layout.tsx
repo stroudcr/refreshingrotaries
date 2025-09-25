@@ -10,6 +10,10 @@ export const metadata: Metadata = {
   description: 'Official website of Rapidfire Rachel - Freedom-loving American Woman Encouraging Others to Take an Active Role in Their Personal Protection',
   keywords: 'Rapidfire Rachel, personal protection, outdoor enthusiast, freedom advocate',
   authors: [{ name: 'Rapidfire Rachel' }],
+  icons: {
+    icon: '/images/gallery/rfr.ico',
+    shortcut: '/images/gallery/rfr.ico',
+  },
   openGraph: {
     title: 'Rapidfire Rachel',
     description: 'Freedom-loving American Woman Encouraging Others to Take an Active Role in Their Personal Protection',
