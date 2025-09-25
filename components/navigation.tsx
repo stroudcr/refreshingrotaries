@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 
@@ -20,14 +21,20 @@ export function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <Link href="/" className="flex items-center space-x-2">
-              <motion.span 
-                className="text-2xl font-military text-orange-accent"
+            <Link href="/" className="flex items-center">
+              <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                RAPIDFIRE RACHEL
-              </motion.span>
+                <Image
+                  src="/images/gallery/Mainlogo.svg"
+                  alt="Rapidfire Rachel"
+                  width={200}
+                  height={40}
+                  className="h-10 w-auto"
+                  priority
+                />
+              </motion.div>
             </Link>
           </div>
 

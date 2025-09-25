@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -42,7 +43,13 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h3 className="text-2xl font-military mb-4">RAPIDFIRE RACHEL</h3>
+            <Image
+              src="/images/gallery/Mainlogo.svg"
+              alt="Rapidfire Rachel"
+              width={200}
+              height={40}
+              className="h-12 w-auto mb-4"
+            />
             <p className="text-cream/80">
               Freedom-loving American Woman Encouraging Others to Take an Active Role in Their Personal Protection.
             </p>
