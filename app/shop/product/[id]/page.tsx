@@ -4,22 +4,24 @@ import { PrintfulCheckoutButton } from '@/components/printful-checkout'
 import { printfulClient } from '@/lib/printful'
 
 interface ProductPageProps {
-  params: {
+  params: Promise<{
     id: string
-  }
+  }>
 }
 
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
-  const product = await printfulClient.getProduct(parseInt(params.id))
+  const { id } = await params
+  const product = await printfulClient.getProduct(parseInt(id))
 
   return {
     title: product?.sync_product?.name || 'Product - Rapidfire Rachel',
-    description: `Shop ${product?.sync_product?.name || 'this product'} from Rapidfire Rachel's exclusive collection.`,
+    description: `Shop ${product?.sync_product?.name || 'this product'} from Rapidfire Rachel&apos;s exclusive collection.`,
   }
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
-  const product = await printfulClient.getProduct(parseInt(params.id))
+  const { id } = await params
+  const product = await printfulClient.getProduct(parseInt(id))
 
   if (!product) {
     return (
@@ -90,7 +92,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
             {/* Product Description */}
             <div className="mt-8 prose dark:prose-invert">
               <h3>Product Details</h3>
-              <p>High-quality merchandise from Rapidfire Rachel's exclusive collection.</p>
+              <p>High-quality merchandise from Rapidfire Rachel&apos;s exclusive collection.</p>
               <ul>
                 <li>Premium materials</li>
                 <li>Made to order</li>
