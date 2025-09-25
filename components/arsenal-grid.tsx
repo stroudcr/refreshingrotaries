@@ -21,70 +21,8 @@ interface ArsenalGridProps {
   activeCategory: string
 }
 
-const fallbackPosts: ArsenalPost[] = [
-  {
-    _id: '1',
-    title: 'Best Concealed Carry Holsters for 2024',
-    excerpt: 'After testing dozens of holsters, here are my top picks for comfortable, secure concealed carry.',
-    categories: ['Reviews'],
-    mainImage: null,
-    slug: { current: 'best-concealed-carry-holsters-2024' },
-    publishedAt: '2024-01-20',
-    author: 'Admin',
-  },
-  {
-    _id: '2',
-    title: 'My Journey: From Beginner to Competition Shooter',
-    excerpt: 'How I went from never holding a firearm to competing at national level competitions.',
-    categories: ['Personal'],
-    mainImage: null,
-    slug: { current: 'journey-beginner-to-competition' },
-    publishedAt: '2024-01-18',
-    author: 'Admin',
-  },
-  {
-    _id: '3',
-    title: 'Ultimate Gaming Setup for Tactical Shooters',
-    excerpt: 'Build the perfect gaming setup for dominating in tactical FPS games.',
-    categories: ['Gaming'],
-    mainImage: null,
-    slug: { current: 'gaming-setup-tactical-shooters' },
-    publishedAt: '2024-01-15',
-    author: 'Admin',
-  },
-  {
-    _id: '4',
-    title: 'Range Bag Essentials: What You Really Need',
-    excerpt: 'Stop overpacking! Here\'s exactly what you need in your range bag for a successful day.',
-    categories: ['Recommendations'],
-    mainImage: null,
-    slug: { current: 'range-bag-essentials' },
-    publishedAt: '2024-01-12',
-    author: 'Admin',
-  },
-  {
-    _id: '5',
-    title: 'Women in the 2A Community: Breaking Barriers',
-    excerpt: 'Celebrating the growing presence of women in shooting sports and personal protection.',
-    categories: ['Personal'],
-    mainImage: null,
-    slug: { current: 'women-2a-community' },
-    publishedAt: '2024-01-10',
-    author: 'Admin',
-  },
-  {
-    _id: '6',
-    title: 'Top 5 Training Drills for Home Defense',
-    excerpt: 'Practical drills you can practice to improve your home defense readiness.',
-    categories: ['Recommendations'],
-    mainImage: null,
-    slug: { current: 'training-drills-home-defense' },
-    publishedAt: '2024-01-08',
-    author: 'Admin',
-  },
-]
 
-export function ArsenalGrid({ posts = fallbackPosts, activeCategory = 'all' }: ArsenalGridProps) {
+export function ArsenalGrid({ posts = [], activeCategory = 'all' }: ArsenalGridProps) {
   const filteredPosts = activeCategory === 'all'
     ? posts
     : posts.filter(post =>
@@ -93,7 +31,7 @@ export function ArsenalGrid({ posts = fallbackPosts, activeCategory = 'all' }: A
         )
       )
 
-  const displayPosts = filteredPosts.length > 0 ? filteredPosts : fallbackPosts
+  const displayPosts = filteredPosts
   return (
     <section className="py-20 bg-gray-50 dark:bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

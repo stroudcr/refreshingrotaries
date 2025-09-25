@@ -15,7 +15,7 @@ export function ContactInfo() {
   const faqs = [
     {
       question: 'Can I book you for speaking events?',
-      answer: 'Absolutely! I love speaking about personal protection, 2A rights, and empowerment.',
+      answer: 'Absolutely! I love speaking about personal protection, 2A rights, and advancing liberty.',
     },
     {
       question: 'Do you have sponsorship opportunities?',
