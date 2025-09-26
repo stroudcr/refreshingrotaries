@@ -11,7 +11,7 @@ export function Navigation() {
   const navItems = [
     { href: '/', label: 'Home' },
     { href: '/about', label: 'About' },
-    { href: '/shop', label: 'Shop' },
+    { href: 'https://rapidfirerachel.printful.me/', label: 'Shop', external: true },
     { href: '/arsenal', label: 'Arsenal' },
     { href: '/contact', label: 'Contact' },
   ]
@@ -40,13 +40,25 @@ export function Navigation() {
 
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="text-gray-300 hover:text-orange-accent transition-colors duration-200 font-medium"
-              >
-                {item.label}
-              </Link>
+              item.external ? (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-orange-accent transition-colors duration-200 font-medium"
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="text-gray-300 hover:text-orange-accent transition-colors duration-200 font-medium"
+                >
+                  {item.label}
+                </Link>
+              )
             ))}
           </div>
 
@@ -77,14 +89,27 @@ export function Navigation() {
         >
           <div className="px-2 pt-2 pb-3 space-y-1">
             {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-orange-accent hover:bg-gray-800"
-                onClick={() => setIsOpen(false)}
-              >
-                {item.label}
-              </Link>
+              item.external ? (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-orange-accent hover:bg-gray-800"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-orange-accent hover:bg-gray-800"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              )
             ))}
           </div>
         </motion.div>
