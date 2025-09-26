@@ -17,7 +17,7 @@ export default function PrivacyPage() {
           <section className="mb-8">
             <h2 className="text-2xl font-bold text-cream mb-4">Introduction</h2>
             <p>
-              Rapidfire Rachel ("we," "us," or "our") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website rapidfirerachel.com (the "Site").
+              Rapidfire Rachel (&ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;) is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website rapidfirerachel.com (the &ldquo;Site&rdquo;).
             </p>
           </section>
 
@@ -64,17 +64,17 @@ export default function PrivacyPage() {
 
             <h3 className="text-xl font-semibold text-cream mb-2">Sanity CMS</h3>
             <p className="mb-4">
-              We use Sanity as our content management system. Content data is stored and managed through Sanity's services. Please refer to Sanity's privacy policy for more information.
+              We use Sanity as our content management system. Content data is stored and managed through Sanity&apos;s services. Please refer to Sanity&apos;s privacy policy for more information.
             </p>
 
             <h3 className="text-xl font-semibold text-cream mb-2">Instagram</h3>
             <p className="mb-4">
-              We display Instagram content on our Site through the Instagram Graph API. When you interact with Instagram content, you are subject to Instagram's privacy policy.
+              We display Instagram content on our Site through the Instagram Graph API. When you interact with Instagram content, you are subject to Instagram&apos;s privacy policy.
             </p>
 
             <h3 className="text-xl font-semibold text-cream mb-2">Printful</h3>
             <p className="mb-4">
-              When you make purchases through our shop, you are redirected to our Printful Quick Store. Printful handles all payment processing and order fulfillment. Your purchase information is subject to Printful's privacy policy.
+              When you make purchases through our shop, you are redirected to our Printful Quick Store. Printful handles all payment processing and order fulfillment. Your purchase information is subject to Printful&apos;s privacy policy.
             </p>
 
             <h3 className="text-xl font-semibold text-cream mb-2">Social Media</h3>
@@ -110,7 +110,7 @@ export default function PrivacyPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-cream mb-4">Children's Privacy</h2>
+            <h2 className="text-2xl font-bold text-cream mb-4">Children&apos;s Privacy</h2>
             <p>
               Our Site is not intended for children under 13 years of age. We do not knowingly collect personal information from children under 13. If you are under 13, please do not provide any information on this Site.
             </p>
@@ -126,7 +126,7 @@ export default function PrivacyPage() {
           <section className="mb-8">
             <h2 className="text-2xl font-bold text-cream mb-4">Changes to This Privacy Policy</h2>
             <p>
-              We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last updated" date.
+              We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the &ldquo;Last updated&rdquo; date.
             </p>
           </section>
 

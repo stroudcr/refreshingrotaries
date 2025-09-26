@@ -17,14 +17,14 @@ export default function TermsPage() {
           <section className="mb-8">
             <h2 className="text-2xl font-bold text-cream mb-4">1. Acceptance of Terms</h2>
             <p>
-              By accessing and using rapidfirerachel.com (the "Site"), you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to these Terms of Service, please do not use this Site.
+              By accessing and using rapidfirerachel.com (the &ldquo;Site&rdquo;), you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to these Terms of Service, please do not use this Site.
             </p>
           </section>
 
           <section className="mb-8">
             <h2 className="text-2xl font-bold text-cream mb-4">2. Use License</h2>
             <p className="mb-4">
-              Permission is granted to temporarily view and use the materials (information or software) on Rapidfire Rachel's website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:
+              Permission is granted to temporarily view and use the materials (information or software) on Rapidfire Rachel&apos;s website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:
             </p>
             <ul className="list-disc list-inside space-y-2">
               <li>Modify or copy the materials</li>
@@ -82,7 +82,7 @@ export default function TermsPage() {
 
             <h3 className="text-xl font-semibold text-cream mb-2">Printful Store</h3>
             <p className="mb-4">
-              Purchases made through our shop are processed by Printful. All transactions, including payment processing, order fulfillment, shipping, and returns, are governed by Printful's terms of service and policies. We are not responsible for any issues related to orders placed through Printful.
+              Purchases made through our shop are processed by Printful. All transactions, including payment processing, order fulfillment, shipping, and returns, are governed by Printful&apos;s terms of service and policies. We are not responsible for any issues related to orders placed through Printful.
             </p>
 
             <h3 className="text-xl font-semibold text-cream mb-2">Social Media</h3>
@@ -101,7 +101,7 @@ export default function TermsPage() {
           <section className="mb-8">
             <h2 className="text-2xl font-bold text-cream mb-4">8. Disclaimer of Warranties</h2>
             <p>
-              The materials on Rapidfire Rachel's website are provided on an 'as is' basis. Rapidfire Rachel makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.
+              The materials on Rapidfire Rachel&apos;s website are provided on an &apos;as is&apos; basis. Rapidfire Rachel makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.
             </p>
             <p className="mt-4">
               Further, Rapidfire Rachel does not warrant or make any representations concerning the accuracy, likely results, or reliability of the use of the materials on its website or otherwise relating to such materials or on any sites linked to this site.
@@ -111,7 +111,7 @@ export default function TermsPage() {
           <section className="mb-8">
             <h2 className="text-2xl font-bold text-cream mb-4">9. Limitation of Liability</h2>
             <p>
-              In no event shall Rapidfire Rachel or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on Rapidfire Rachel's website, even if Rapidfire Rachel or a Rapidfire Rachel authorized representative has been notified orally or in writing of the possibility of such damage. Because some jurisdictions do not allow limitations on implied warranties, or limitations of liability for consequential or incidental damages, these limitations may not apply to you.
+              In no event shall Rapidfire Rachel or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on Rapidfire Rachel&apos;s website, even if Rapidfire Rachel or a Rapidfire Rachel authorized representative has been notified orally or in writing of the possibility of such damage. Because some jurisdictions do not allow limitations on implied warranties, or limitations of liability for consequential or incidental damages, these limitations may not apply to you.
             </p>
           </section>
 
