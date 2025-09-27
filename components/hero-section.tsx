@@ -9,7 +9,7 @@ export function HeroSection() {
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 hero-gradient opacity-90" />
       
-      <div className="absolute inset-0">
+      {/* <div className="absolute inset-0">
         <Image
           src="https://images.unsplash.com/photo-1595432012492-3fb24de86340?q=80&w=2070"
           alt="Tactical background"
@@ -17,7 +17,7 @@ export function HeroSection() {
           className="object-cover opacity-30"
           priority
         />
-      </div>
+      </div> */}
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.div
