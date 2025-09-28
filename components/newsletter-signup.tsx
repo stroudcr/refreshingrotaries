@@ -10,13 +10,32 @@ export function NewsletterSignup() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setStatus('loading')
-    
-    // Simulate API call
-    setTimeout(() => {
-      setStatus('success')
-      setEmail('')
-      setTimeout(() => setStatus('idle'), 3000)
-    }, 1000)
+
+    try {
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        setStatus('success')
+        setEmail('')
+        setTimeout(() => setStatus('idle'), 5000)
+      } else {
+        console.error('Subscription error:', data.error)
+        setStatus('error')
+        setTimeout(() => setStatus('idle'), 5000)
+      }
+    } catch (error) {
+      console.error('Network error:', error)
+      setStatus('error')
+      setTimeout(() => setStatus('idle'), 5000)
+    }
   }
 
   return (
@@ -63,6 +82,16 @@ export function NewsletterSignup() {
                 className="mt-4 text-orange-accent font-bold"
               >
                 Welcome to the squad! Check your email for confirmation.
+              </motion.p>
+            )}
+
+            {status === 'error' && (
+              <motion.p
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-4 text-red-500 font-bold"
+              >
+                Something went wrong. Please try again later.
               </motion.p>
             )}
           </form>
