@@ -39,6 +39,9 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  alternates: {
+    canonical: 'https://rapidfirerachel.com',
+  },
 }
 
 export default function RootLayout({
@@ -46,8 +49,47 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const organizationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Rapidfire Rachel',
+    url: 'https://rapidfirerachel.com',
+    logo: 'https://rapidfirerachel.com/images/gallery/Mainlogo.svg',
+    sameAs: [
+      'https://instagram.com/rachelbee333',
+      'https://facebook.com/rapidfirerachel',
+      'https://x.com/rapidfirerachel',
+      'https://tiktok.com/@rapidfirerachel',
+      'https://youtube.com/@rapidfirerachel',
+    ],
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'Customer Service',
+      url: 'https://rapidfirerachel.com/contact',
+    },
+  }
+
+  const websiteSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Rapidfire Rachel',
+    url: 'https://rapidfirerachel.com',
+    description: 'Freedom-loving American Woman Encouraging Others to Take an Active Role in Their Personal Protection',
+    inLanguage: 'en-US',
+  }
+
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
+      </head>
       <body className="font-body antialiased">
         <ThemeProvider
           attribute="class"

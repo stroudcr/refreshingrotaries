@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useState } from 'react'
 
 interface Category {
   id: string
@@ -10,8 +11,8 @@ interface Category {
 
 interface ArsenalCategoriesProps {
   categories?: Category[]
-  activeCategory: string
-  setActiveCategory: (category: string) => void
+  activeCategory?: string
+  setActiveCategory?: (category: string) => void
 }
 
 const defaultCategories = [
@@ -23,9 +24,13 @@ const defaultCategories = [
 
 export function ArsenalCategories({
   categories = defaultCategories,
-  activeCategory,
-  setActiveCategory
+  activeCategory: propActiveCategory,
+  setActiveCategory: propSetActiveCategory
 }: ArsenalCategoriesProps) {
+  const [localActiveCategory, setLocalActiveCategory] = useState('all')
+
+  const activeCategory = propActiveCategory ?? localActiveCategory
+  const setActiveCategory = propSetActiveCategory ?? setLocalActiveCategory
 
   return (
     <section className="py-8 bg-white dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800">

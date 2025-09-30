@@ -18,7 +18,7 @@ interface ArsenalPost {
 
 interface ArsenalGridProps {
   posts: ArsenalPost[]
-  activeCategory: string
+  activeCategory?: string
 }
 
 
@@ -32,6 +32,16 @@ export function ArsenalGrid({ posts = [], activeCategory = 'all' }: ArsenalGridP
       )
 
   const displayPosts = filteredPosts
+
+  if (displayPosts.length === 0) {
+    return (
+      <section className="py-20 bg-gray-50 dark:bg-gray-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-gray-600 dark:text-gray-400">No posts found.</p>
+        </div>
+      </section>
+    )
+  }
   return (
     <section className="py-20 bg-gray-50 dark:bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -76,12 +86,6 @@ export function ArsenalGrid({ posts = [], activeCategory = 'all' }: ArsenalGridP
               </Link>
             </motion.article>
           ))}
-        </div>
-
-        <div className="text-center mt-12">
-          <button className="btn-secondary">
-            Load More Posts
-          </button>
         </div>
       </div>
     </section>

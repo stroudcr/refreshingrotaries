@@ -1,62 +1,63 @@
-'use client'
-
-import { useState, useEffect } from 'react'
+import { Metadata } from 'next'
 import { ArsenalHero } from '@/components/arsenal-hero'
 import { ArsenalGrid } from '@/components/arsenal-grid'
 import { ArsenalCategories } from '@/components/arsenal-categories'
 import { client } from '@/sanity/lib/client'
 import { POSTS_QUERY } from '@/sanity/lib/queries'
 
-export default function ArsenalPage() {
-  const [posts, setPosts] = useState([])
-  const [activeCategory, setActiveCategory] = useState('all')
-  const [categories, setCategories] = useState([
-    { id: 'all', name: 'All Posts', count: 0 },
-    { id: 'reviews', name: 'Reviews', count: 0 },
-    { id: 'personal', name: 'Personal', count: 0 },
-    { id: 'recommendations', name: 'Recommendations', count: 0 },
-  ])
+export const metadata: Metadata = {
+  title: 'Arsenal - Rapidfire Rachel',
+  description: 'Explore the Arsenal - reviews, personal stories, and recommendations from Rapidfire Rachel on firearms, gear, and personal protection.',
+  alternates: {
+    canonical: 'https://rapidfirerachel.com/arsenal',
+  },
+  openGraph: {
+    title: 'Arsenal - Rapidfire Rachel',
+    description: 'Explore the Arsenal - reviews, personal stories, and recommendations from Rapidfire Rachel.',
+    url: 'https://rapidfirerachel.com/arsenal',
+    siteName: 'Rapidfire Rachel',
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Arsenal - Rapidfire Rachel',
+    description: 'Explore the Arsenal - reviews, personal stories, and recommendations from Rapidfire Rachel.',
+    creator: '@rachelbee333',
+  },
+}
 
-  useEffect(() => {
-    async function fetchPosts() {
-      try {
-        const data = await client.fetch(POSTS_QUERY)
-        setPosts(data)
+export const revalidate = 60 // Revalidate every 60 seconds
 
-        // Update category counts
-        const counts = {
-          all: data.length,
-          reviews: data.filter((p: any) => p.categories?.includes('Reviews')).length,
-          personal: data.filter((p: any) => p.categories?.includes('Personal')).length,
-          recommendations: data.filter((p: any) => p.categories?.includes('Recommendations')).length,
-        }
+export default async function ArsenalPage() {
+  let posts: any[] = []
 
-        setCategories([
-          { id: 'all', name: 'All Posts', count: counts.all },
-          { id: 'reviews', name: 'Reviews', count: counts.reviews },
-          { id: 'personal', name: 'Personal', count: counts.personal },
-          { id: 'recommendations', name: 'Recommendations', count: counts.recommendations },
-        ])
-      } catch (error) {
-        console.error('Error fetching posts:', error)
-      }
-    }
+  try {
+    posts = await client.fetch(POSTS_QUERY)
+  } catch (error) {
+    console.error('Error fetching posts:', error)
+  }
 
-    fetchPosts()
-  }, [])
+  // Calculate category counts
+  const counts = {
+    all: posts.length,
+    reviews: posts.filter((p: any) => p.categories?.includes('Reviews')).length,
+    personal: posts.filter((p: any) => p.categories?.includes('Personal')).length,
+    recommendations: posts.filter((p: any) => p.categories?.includes('Recommendations')).length,
+  }
+
+  const categories = [
+    { id: 'all', name: 'All Posts', count: counts.all },
+    { id: 'reviews', name: 'Reviews', count: counts.reviews },
+    { id: 'personal', name: 'Personal', count: counts.personal },
+    { id: 'recommendations', name: 'Recommendations', count: counts.recommendations },
+  ]
 
   return (
     <>
       <ArsenalHero />
-      <ArsenalCategories
-        categories={categories}
-        activeCategory={activeCategory}
-        setActiveCategory={setActiveCategory}
-      />
-      <ArsenalGrid
-        posts={posts}
-        activeCategory={activeCategory}
-      />
+      <ArsenalCategories categories={categories} />
+      <ArsenalGrid posts={posts} />
     </>
   )
 }

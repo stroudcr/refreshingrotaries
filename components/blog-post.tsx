@@ -104,8 +104,66 @@ export function BlogPost({ slug }: BlogPostProps) {
 
   if (!post) return null
 
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.excerpt || post.title,
+    image: post.mainImage ? urlFor(post.mainImage).url() : undefined,
+    datePublished: post.publishedAt,
+    author: {
+      '@type': 'Person',
+      name: post.author?.name || 'Rapidfire Rachel',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Rapidfire Rachel',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://rapidfirerachel.com/images/gallery/Mainlogo.svg',
+      },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://rapidfirerachel.com/arsenal/${slug}`,
+    },
+  }
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://rapidfirerachel.com',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Arsenal',
+        item: 'https://rapidfirerachel.com/arsenal',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: post.title,
+        item: `https://rapidfirerachel.com/arsenal/${slug}`,
+      },
+    ],
+  }
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
