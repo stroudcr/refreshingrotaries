@@ -16,7 +16,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       }
     }
 
-    const ogImage = post.mainImage ? urlFor(post.mainImage).width(1200).height(630).url() : undefined
+    let ogImage: string | undefined = undefined
+    if (post.mainImage && post.mainImage.asset) {
+      const imageBuilder = urlFor(post.mainImage)
+      if ('width' in imageBuilder) {
+        ogImage = imageBuilder.width(1200).height(630).url()
+      }
+    }
     const canonicalUrl = `https://rapidfirerachel.com/arsenal/${slug}`
 
     return {
