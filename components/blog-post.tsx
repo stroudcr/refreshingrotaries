@@ -197,12 +197,12 @@ export function BlogPost({ slug }: BlogPostProps) {
 
           {/* Main Image */}
           {post.mainImage && (
-            <div className="relative h-96 mb-12 rounded-lg overflow-hidden">
+            <div className="relative w-full aspect-video mb-12 rounded-lg overflow-hidden">
               <Image
                 src={urlFor(post.mainImage).url()}
                 alt={post.mainImage.alt || post.title}
                 fill
-                className="object-cover"
+                className="object-contain bg-gray-100 dark:bg-gray-900"
               />
             </div>
           )}
