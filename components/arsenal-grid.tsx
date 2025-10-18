@@ -57,12 +57,12 @@ export function ArsenalGrid({ posts = [], activeCategory = 'all' }: ArsenalGridP
             >
               <Link href={`/arsenal/${post.slug.current}`}>
                 <div className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg h-full flex flex-col">
-                  <div className="relative h-48">
+                  <div className="relative w-full aspect-video">
                     <Image
                       src={post.mainImage && post.mainImage.asset ? urlFor(post.mainImage).url() : '/images/placeholder.jpg'}
                       alt={post.mainImage?.alt || post.title}
                       fill
-                      className="object-cover"
+                      className="object-contain bg-gray-100 dark:bg-gray-900"
                     />
                     <div className="absolute top-4 left-4">
                       <span className="bg-military-green text-cream px-3 py-1 rounded-full text-sm font-bold">
