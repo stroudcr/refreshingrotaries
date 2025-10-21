@@ -3,6 +3,9 @@ import { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Privacy Policy | Rapidfire Rachel',
   description: 'Privacy Policy for Rapidfire Rachel - How we collect, use, and protect your personal information.',
+  alternates: {
+    canonical: 'https://rapidfirerachel.com/privacy',
+  },
 }
 
 export default function PrivacyPage() {

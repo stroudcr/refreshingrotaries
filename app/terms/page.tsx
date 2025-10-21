@@ -3,6 +3,9 @@ import { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Terms of Service | Rapidfire Rachel',
   description: 'Terms of Service for Rapidfire Rachel - The terms and conditions governing your use of our website and services.',
+  alternates: {
+    canonical: 'https://rapidfirerachel.com/terms',
+  },
 }
 
 export default function TermsPage() {
