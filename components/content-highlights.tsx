@@ -95,13 +95,13 @@ export function ContentHighlights() {
             >
               <Link href={`/arsenal/${post.slug.current}`}>
                 <div className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-                  <div className="relative h-48">
+                  <div className="relative w-full aspect-video">
                     {post.mainImage && post.mainImage.asset ? (
                       <Image
                         src={urlFor(post.mainImage).url()}
                         alt={post.mainImage.alt || post.title}
                         fill
-                        className="object-cover"
+                        className="object-contain bg-gray-100 dark:bg-gray-900"
                       />
                     ) : (
                       <div className="w-full h-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
