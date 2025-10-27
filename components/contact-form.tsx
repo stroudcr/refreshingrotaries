@@ -9,6 +9,7 @@ export function ContactForm() {
     email: '',
     subject: '',
     message: '',
+    website: '', // Honeypot field - should remain empty
   })
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
 
@@ -32,7 +33,7 @@ export function ContactForm() {
       }
 
       setStatus('success')
-      setFormData({ name: '', email: '', subject: '', message: '' })
+      setFormData({ name: '', email: '', subject: '', message: '', website: '' })
       setTimeout(() => setStatus('idle'), 5000)
     } catch (error) {
       console.error('Error sending message:', error)
@@ -88,6 +89,20 @@ export function ContactForm() {
                 className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-accent dark:bg-gray-700"
               />
             </div>
+          </div>
+
+          {/* Honeypot field - hidden from users but visible to bots */}
+          <div className="hidden" aria-hidden="true">
+            <label htmlFor="website">Website</label>
+            <input
+              type="text"
+              id="website"
+              name="website"
+              value={formData.website}
+              onChange={handleChange}
+              tabIndex={-1}
+              autoComplete="off"
+            />
           </div>
 
           <div>

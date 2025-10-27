@@ -5,7 +5,16 @@ const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function POST(req: Request) {
   try {
-    const { name, email, subject, message } = await req.json()
+    const { name, email, subject, message, website } = await req.json()
+
+    // Honeypot check - if website field is filled, it's a bot
+    if (website) {
+      console.log('Bot detected: honeypot field was filled')
+      return NextResponse.json(
+        { error: 'Invalid submission' },
+        { status: 400 }
+      )
+    }
 
     // Validate required fields
     if (!name || !email || !subject || !message) {
