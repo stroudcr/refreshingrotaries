@@ -11,8 +11,8 @@ export const metadata: Metadata = {
   keywords: 'Rapidfire Rachel, personal protection, outdoor enthusiast, freedom advocate',
   authors: [{ name: 'Rapidfire Rachel' }],
   icons: {
-    icon: '/images/gallery/rfr.ico',
-    shortcut: '/images/gallery/rfr.ico',
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
   },
   openGraph: {
     title: 'Rapidfire Rachel',
