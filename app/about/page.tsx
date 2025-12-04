@@ -16,12 +16,19 @@ export const metadata: Metadata = {
     siteName: 'Rapidfire Rachel',
     locale: 'en_US',
     type: 'profile',
+    images: [{
+      url: 'https://rapidfirerachel.com/images/gallery/meet-rachel.jpg',
+      width: 1200,
+      height: 630,
+      alt: 'About Rapidfire Rachel',
+    }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'About - Rapidfire Rachel',
     description: 'Learn about Rapidfire Rachel - Freedom-loving American Woman Encouraging Others to Take an Active Role in Their Personal Protection',
     creator: '@rachelbee333',
+    images: ['https://rapidfirerachel.com/images/gallery/meet-rachel.jpg'],
   },
 }
 

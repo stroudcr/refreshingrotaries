@@ -15,12 +15,19 @@ export const metadata: Metadata = {
     siteName: 'Rapidfire Rachel',
     locale: 'en_US',
     type: 'website',
+    images: [{
+      url: 'https://rapidfirerachel.com/images/gallery/meet-rachel.jpg',
+      width: 1200,
+      height: 630,
+      alt: 'Contact Rapidfire Rachel',
+    }],
   },
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
     title: 'Contact - Rapidfire Rachel',
     description: 'Get in touch with Rapidfire Rachel for business inquiries, collaborations, and speaking engagements.',
     creator: '@rachelbee333',
+    images: ['https://rapidfirerachel.com/images/gallery/meet-rachel.jpg'],
   },
 }
 

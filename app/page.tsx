@@ -8,6 +8,17 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://rapidfirerachel.com',
   },
+  openGraph: {
+    images: [{
+      url: 'https://rapidfirerachel.com/images/gallery/meet-rachel.jpg',
+      width: 1200,
+      height: 630,
+      alt: 'Rapidfire Rachel - Freedom, Liberty, Personal Protection',
+    }],
+  },
+  twitter: {
+    images: ['https://rapidfirerachel.com/images/gallery/meet-rachel.jpg'],
+  },
 }
 
 export default function HomePage() {
