@@ -26,6 +26,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: '*.printful.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'beehiiv-images-production.s3.amazonaws.com',
+      },
     ],
   },
 }
