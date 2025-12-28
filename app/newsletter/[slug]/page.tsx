@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: NewsletterPageProps): Promise
         siteName: 'Rapidfire Rachel',
         locale: 'en_US',
         type: 'article',
-        publishedTime: newsletter.publish_date,
+        publishedTime: new Date(newsletter.publish_date * 1000).toISOString(),
         authors: ['Rapidfire Rachel'],
         images: newsletter.thumbnail_url
           ? [
@@ -85,7 +85,7 @@ export default async function NewsletterPostPage({ params }: NewsletterPageProps
     '@type': 'Article',
     headline: newsletter.title,
     description: newsletter.subtitle || newsletter.title,
-    datePublished: newsletter.publish_date,
+    datePublished: new Date(newsletter.publish_date * 1000).toISOString(),
     author: {
       '@type': 'Person',
       name: 'Rapidfire Rachel',
