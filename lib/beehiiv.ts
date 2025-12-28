@@ -7,7 +7,11 @@ interface BeehiivPost {
   displayed_date: string
   thumbnail_url: string | null
   web_url: string
-  free_web_content: string | null
+  content?: {
+    free?: {
+      web?: string
+    }
+  }
   stats?: {
     opens: number
     clicks: number
@@ -134,10 +138,6 @@ export class BeehiivClient {
       }
 
       const data = await response.json()
-      console.log('🔍 Beehiiv API response for post ID:', id)
-      console.log('📄 Full response:', JSON.stringify(data, null, 2))
-      console.log('📝 free_web_content length:', data.data?.free_web_content?.length || 0)
-      console.log('📝 free_web_content preview:', data.data?.free_web_content?.substring(0, 100))
       return data.data
     } catch (error) {
       console.error(`Error fetching beehiiv post with ID "${id}":`, error)

@@ -18,18 +18,14 @@ export function NewsletterContent({ newsletter }: NewsletterContentProps) {
 
     // Dynamically import DOMPurify only in browser
     import('isomorphic-dompurify').then((DOMPurify) => {
-      console.log('🔍 Newsletter data received:', {
-        hasContent: !!newsletter.free_web_content,
-        contentLength: newsletter.free_web_content?.length || 0,
-        contentPreview: newsletter.free_web_content?.substring(0, 100)
-      })
+      const content = newsletter.content?.free?.web
 
-      if (!newsletter.free_web_content) {
+      if (!content) {
         setSanitizedHtml('<p>Content not available</p>')
         return
       }
 
-      const clean = DOMPurify.default.sanitize(newsletter.free_web_content, {
+      const clean = DOMPurify.default.sanitize(content, {
         ALLOWED_TAGS: [
           'p', 'br', 'strong', 'em', 'u', 'b', 'i',
           'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
@@ -42,7 +38,7 @@ export function NewsletterContent({ newsletter }: NewsletterContentProps) {
       })
       setSanitizedHtml(clean)
     })
-  }, [newsletter.free_web_content])
+  }, [newsletter.content?.free?.web])
 
   return (
     <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

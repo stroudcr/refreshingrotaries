@@ -78,7 +78,7 @@ export function NewsletterList({ newsletters = [] }: NewsletterListProps) {
                         )}
 
                         <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">
-                          {createExcerpt(newsletter.free_web_content, 200)}
+                          {createExcerpt(newsletter.content?.free?.web, 200)}
                         </p>
                       </div>
 
