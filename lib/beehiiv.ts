@@ -3,7 +3,7 @@ interface BeehiivPost {
   title: string
   subtitle: string | null
   slug: string
-  publish_date: string
+  publish_date: number
   displayed_date: string
   thumbnail_url: string | null
   web_url: string
