@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import DOMPurify from 'isomorphic-dompurify'
 import { BeehiivPost } from '@/lib/beehiiv'
 
 interface NewsletterContentProps {
@@ -14,24 +13,29 @@ export function NewsletterContent({ newsletter }: NewsletterContentProps) {
   const [sanitizedHtml, setSanitizedHtml] = useState<string>('')
 
   useEffect(() => {
-    // Sanitize HTML on client side
-    if (!newsletter.free_web_content) {
-      setSanitizedHtml('<p>Content not available</p>')
-      return
-    }
+    // Only run in browser
+    if (typeof window === 'undefined') return
 
-    const clean = DOMPurify.sanitize(newsletter.free_web_content, {
-      ALLOWED_TAGS: [
-        'p', 'br', 'strong', 'em', 'u', 'b', 'i',
-        'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
-        'a', 'ul', 'ol', 'li',
-        'img', 'blockquote', 'code', 'pre',
-        'div', 'span', 'table', 'thead', 'tbody', 'tr', 'th', 'td',
-      ],
-      ALLOWED_ATTR: ['href', 'src', 'alt', 'class', 'id', 'title', 'target', 'rel'],
-      ALLOW_DATA_ATTR: false,
+    // Dynamically import DOMPurify only in browser
+    import('isomorphic-dompurify').then((DOMPurify) => {
+      if (!newsletter.free_web_content) {
+        setSanitizedHtml('<p>Content not available</p>')
+        return
+      }
+
+      const clean = DOMPurify.default.sanitize(newsletter.free_web_content, {
+        ALLOWED_TAGS: [
+          'p', 'br', 'strong', 'em', 'u', 'b', 'i',
+          'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+          'a', 'ul', 'ol', 'li',
+          'img', 'blockquote', 'code', 'pre',
+          'div', 'span', 'table', 'thead', 'tbody', 'tr', 'th', 'td',
+        ],
+        ALLOWED_ATTR: ['href', 'src', 'alt', 'class', 'id', 'title', 'target', 'rel'],
+        ALLOW_DATA_ATTR: false,
+      })
+      setSanitizedHtml(clean)
     })
-    setSanitizedHtml(clean)
   }, [newsletter.free_web_content])
 
   return (
