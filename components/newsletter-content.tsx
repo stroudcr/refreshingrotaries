@@ -18,6 +18,12 @@ export function NewsletterContent({ newsletter }: NewsletterContentProps) {
 
     // Dynamically import DOMPurify only in browser
     import('isomorphic-dompurify').then((DOMPurify) => {
+      console.log('🔍 Newsletter data received:', {
+        hasContent: !!newsletter.free_web_content,
+        contentLength: newsletter.free_web_content?.length || 0,
+        contentPreview: newsletter.free_web_content?.substring(0, 100)
+      })
+
       if (!newsletter.free_web_content) {
         setSanitizedHtml('<p>Content not available</p>')
         return
