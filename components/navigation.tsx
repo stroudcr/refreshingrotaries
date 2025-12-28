@@ -13,6 +13,7 @@ export function Navigation() {
     { href: '/about', label: 'About' },
     { href: 'https://rapidfirerachel.printful.me/', label: 'Shop', external: true },
     { href: '/arsenal', label: 'Arsenal' },
+    { href: '/newsletter', label: 'Newsletter' },
     { href: '/contact', label: 'Contact' },
   ]
 
