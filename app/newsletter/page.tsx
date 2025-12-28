@@ -1,5 +1,4 @@
 import { Metadata } from 'next'
-import { NewsletterHero } from '@/components/newsletter-hero'
 import { NewsletterSignup } from '@/components/newsletter-signup'
 import { NewsletterList } from '@/components/newsletter-list'
 import { NewsletterPagination } from '@/components/newsletter-pagination'
@@ -100,8 +99,7 @@ export default async function NewsletterPage({ searchParams }: NewsletterPagePro
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionPageSchema) }}
       />
-      <NewsletterHero />
-      <NewsletterSignup />
+      <NewsletterSignup headingLevel="h1" />
       <NewsletterList newsletters={newsletters} />
       <NewsletterPagination currentPage={currentPage} totalPages={totalPages} />
     </>

@@ -3,9 +3,14 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 
-export function NewsletterSignup() {
+interface NewsletterSignupProps {
+  headingLevel?: 'h1' | 'h2'
+}
+
+export function NewsletterSignup({ headingLevel = 'h2' }: NewsletterSignupProps = {}) {
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const HeadingTag = headingLevel
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -48,9 +53,9 @@ export function NewsletterSignup() {
           viewport={{ once: true }}
           className="text-center"
         >
-          <h2 className="text-4xl font-military text-cream mb-4">
+          <HeadingTag className="text-4xl font-military text-cream mb-4">
             JOIN THE NEWSLETTER
-          </h2>
+          </HeadingTag>
           <p className="text-cream/80 mb-8">
             Get exclusive content, early access to merch drops, and tactical tips delivered to your inbox
           </p>
