@@ -76,11 +76,11 @@ export class BeehiivClient {
    */
   async getPostBySlug(slug: string): Promise<BeehiivPost | null> {
     try {
-      // beehiiv API doesn't support filtering by slug directly, so we need to fetch all and filter
-      // For better performance in production, consider fetching with a higher limit or implementing cursor-based pagination
-      const response = await fetch(
+      // Step 1: Fetch list to find the post ID by slug
+      // Note: List endpoint doesn't return full content even with expand parameters
+      const listResponse = await fetch(
         `${this.baseUrl}/publications/${this.publicationId}/posts?` +
-        `status=confirmed&expand[]=free_web_content&expand[]=stats&limit=100`,
+        `status=confirmed&limit=100`,
         {
           headers: {
             'Authorization': `Bearer ${this.apiKey}`,
@@ -90,14 +90,19 @@ export class BeehiivClient {
         }
       )
 
-      if (!response.ok) {
-        throw new Error(`beehiiv API error: ${response.status} ${response.statusText}`)
+      if (!listResponse.ok) {
+        throw new Error(`beehiiv API error: ${listResponse.status} ${listResponse.statusText}`)
       }
 
-      const data: BeehiivPostsResponse = await response.json()
-      const post = data.data.find((p) => p.slug === slug)
+      const listData: BeehiivPostsResponse = await listResponse.json()
+      const postPreview = listData.data.find((p) => p.slug === slug)
 
-      return post || null
+      if (!postPreview) {
+        return null
+      }
+
+      // Step 2: Fetch the full post by ID to get complete content
+      return await this.getPostById(postPreview.id)
     } catch (error) {
       console.error(`Error fetching beehiiv post with slug "${slug}":`, error)
       throw error
