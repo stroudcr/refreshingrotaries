@@ -27,13 +27,14 @@ export function NewsletterContent({ newsletter }: NewsletterContentProps) {
 
       const clean = DOMPurify.default.sanitize(content, {
         ALLOWED_TAGS: [
+          'style', 'link',
           'p', 'br', 'strong', 'em', 'u', 'b', 'i',
           'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
           'a', 'ul', 'ol', 'li',
           'img', 'blockquote', 'code', 'pre',
           'div', 'span', 'table', 'thead', 'tbody', 'tr', 'th', 'td',
         ],
-        ALLOWED_ATTR: ['href', 'src', 'alt', 'class', 'id', 'title', 'target', 'rel'],
+        ALLOWED_ATTR: ['style', 'class', 'href', 'src', 'alt', 'id', 'title', 'target', 'rel'],
         ALLOW_DATA_ATTR: false,
       })
       setSanitizedHtml(clean)
@@ -82,10 +83,7 @@ export function NewsletterContent({ newsletter }: NewsletterContentProps) {
         </div>
 
         {/* Newsletter Content */}
-        <div
-          className="prose prose-lg dark:prose-invert max-w-none"
-          dangerouslySetInnerHTML={{ __html: sanitizedHtml }}
-        />
+        <div dangerouslySetInnerHTML={{ __html: sanitizedHtml }} />
 
         {/* Social Sharing Section */}
         <div className="mt-12 p-8 bg-military-green dark:bg-gray-800 rounded-lg">
