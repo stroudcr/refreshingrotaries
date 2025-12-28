@@ -9,20 +9,6 @@ interface NewsletterListProps {
   newsletters: BeehiivPost[]
 }
 
-// Helper function to strip HTML tags from content
-function stripHtml(html: string | undefined | null): string {
-  if (!html) return ''
-  return html.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').trim()
-}
-
-// Helper function to create excerpt from HTML content
-function createExcerpt(html: string | undefined | null, maxLength: number = 200): string {
-  const text = stripHtml(html)
-  if (!text || text.length === 0) return 'No preview available'
-  if (text.length <= maxLength) return text
-  return text.substring(0, maxLength).trim() + '...'
-}
-
 export function NewsletterList({ newsletters = [] }: NewsletterListProps) {
   if (newsletters.length === 0) {
     return (
@@ -76,10 +62,6 @@ export function NewsletterList({ newsletters = [] }: NewsletterListProps) {
                             {newsletter.subtitle}
                           </p>
                         )}
-
-                        <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">
-                          {createExcerpt(newsletter.content?.free?.web, 200)}
-                        </p>
                       </div>
 
                       <div className="flex justify-between items-center text-sm text-gray-500 dark:text-gray-500 mt-4">
