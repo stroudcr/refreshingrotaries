@@ -10,13 +10,15 @@ interface NewsletterListProps {
 }
 
 // Helper function to strip HTML tags from content
-function stripHtml(html: string): string {
+function stripHtml(html: string | undefined | null): string {
+  if (!html) return ''
   return html.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').trim()
 }
 
 // Helper function to create excerpt from HTML content
-function createExcerpt(html: string, maxLength: number = 200): string {
+function createExcerpt(html: string | undefined | null, maxLength: number = 200): string {
   const text = stripHtml(html)
+  if (!text || text.length === 0) return 'No preview available'
   if (text.length <= maxLength) return text
   return text.substring(0, maxLength).trim() + '...'
 }

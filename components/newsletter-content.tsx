@@ -15,6 +15,11 @@ export function NewsletterContent({ newsletter }: NewsletterContentProps) {
 
   useEffect(() => {
     // Sanitize HTML on client side
+    if (!newsletter.free_web_content) {
+      setSanitizedHtml('<p>Content not available</p>')
+      return
+    }
+
     const clean = DOMPurify.sanitize(newsletter.free_web_content, {
       ALLOWED_TAGS: [
         'p', 'br', 'strong', 'em', 'u', 'b', 'i',

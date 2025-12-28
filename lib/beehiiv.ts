@@ -7,7 +7,7 @@ interface BeehiivPost {
   displayed_date: string
   thumbnail_url: string | null
   web_url: string
-  free_web_content: string
+  free_web_content: string | null
   stats?: {
     opens: number
     clicks: number
