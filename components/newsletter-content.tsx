@@ -58,30 +58,6 @@ export function NewsletterContent({ newsletter }: NewsletterContentProps) {
           Back to Newsletter Archive
         </Link>
 
-        <div className="mb-8">
-          <h1 className="text-4xl md:text-5xl font-military mb-4">
-            {newsletter.title}
-          </h1>
-
-          {newsletter.subtitle && (
-            <p className="text-xl text-gray-600 dark:text-gray-400 mb-4">
-              {newsletter.subtitle}
-            </p>
-          )}
-
-          <div className="flex items-center text-gray-600 dark:text-gray-400 space-x-4">
-            <span>Rapidfire Rachel</span>
-            <span>•</span>
-            <span>
-              {new Date(newsletter.publish_date).toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-              })}
-            </span>
-          </div>
-        </div>
-
         {/* Newsletter Content */}
         <div dangerouslySetInnerHTML={{ __html: sanitizedHtml }} />
 

@@ -84,7 +84,7 @@ export function NewsletterList({ newsletters = [] }: NewsletterListProps) {
 
                       <div className="flex justify-between items-center text-sm text-gray-500 dark:text-gray-500 mt-4">
                         <span>
-                          {new Date(newsletter.publish_date).toLocaleDateString('en-US', {
+                          {new Date(newsletter.publish_date * 1000).toLocaleDateString('en-US', {
                             year: 'numeric',
                             month: 'long',
                             day: 'numeric',
