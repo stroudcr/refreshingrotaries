@@ -1,85 +1,110 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import Link from 'next/link'
 import Image from 'next/image'
+import Link from 'next/link'
+import { motion, useReducedMotion } from 'framer-motion'
+import styles from './hero-section.module.css'
+
+const stats = [
+  { value: '225K+', label: 'Followers' },
+  { value: '1M+', label: 'Views' },
+  { value: '100+', label: 'Videos' },
+]
 
 export function HeroSection() {
+  const prefersReducedMotion = useReducedMotion()
+
+  const entrance = prefersReducedMotion
+    ? {}
+    : {
+        initial: { opacity: 0, y: 24 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] as const },
+      }
+
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 hero-gradient opacity-90" />
-      
-      {/* <div className="absolute inset-0">
+    <section className={styles.hero} aria-labelledby="home-hero-title">
+      <div className={styles.texture} aria-hidden="true">
         <Image
-          src="https://images.unsplash.com/photo-1595432012492-3fb24de86340?q=80&w=2070"
-          alt="Tactical background"
+          src="/images/hero/topographic-texture.webp"
+          alt=""
           fill
-          className="object-cover opacity-30"
+          sizes="100vw"
+          className={styles.textureImage}
           priority
         />
-      </div> */}
+      </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <h1 className="text-5xl md:text-7xl font-military text-cream mb-6">
-            RAPIDFIRE RACHEL
-          </h1>
-          
-          <p className="text-xl md:text-2xl text-cream/90 mb-8 max-w-3xl mx-auto">
-            Freedom-loving American Woman Encouraging Others to Take an Active Role in Their Personal Protection
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <a href="https://rapidfirerachel.printful.me/" className="btn-primary inline-block" target="_blank" rel="noopener noreferrer">
-                Shop Merch
-              </a>
-            </motion.div>
-            
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Link href="/arsenal" className="btn-secondary inline-block">
-                Check the Arsenal
-              </Link>
-            </motion.div>
-          </div>
-        </motion.div>
-
-        <motion.div 
-          className="mt-16"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 1 }}
-        >
-          <div className="flex justify-center space-x-8">
-            <div className="text-center">
-              <p className="text-3xl font-bold text-orange-accent">225K+</p>
-              <p className="text-cream/80">Followers</p>
-            </div>
-            <div className="text-center">
-              <p className="text-3xl font-bold text-orange-accent">1M+</p>
-              <p className="text-cream/80">Views</p>
-            </div>
-            <div className="text-center">
-              <p className="text-3xl font-bold text-orange-accent">100+</p>
-              <p className="text-cream/80">Videos</p>
-            </div>
-          </div>
-        </motion.div>
+      <div className={styles.ghostLetter} aria-hidden="true">
+        R
       </div>
 
       <motion.div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ repeat: Infinity, duration: 2 }}
+        className={styles.portraitPanel}
+        initial={prefersReducedMotion ? false : { opacity: 0, x: 36 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
       >
-        <svg className="w-6 h-6 text-cream/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-        </svg>
+        <Image
+          src="/images/gallery/meet-rachel.jpg"
+          alt="Rapidfire Rachel outdoors beside a stone wall"
+          fill
+          sizes="(min-width: 768px) 54vw, 100vw"
+          className={styles.portrait}
+          priority
+        />
       </motion.div>
+
+      <div className={styles.splitEdge} aria-hidden="true" />
+
+      <motion.div className={styles.content} {...entrance}>
+        <h1 id="home-hero-title" className={styles.title}>
+          <span>Rapidfire</span>
+          <span>Rachel</span>
+        </h1>
+
+        <p className={styles.mission}>
+          Freedom-loving American Woman Encouraging Others to Take an Active
+          Role in Their Personal Protection
+        </p>
+
+        <div className={styles.actions}>
+          <motion.a
+            href="https://rapidfirerachel.printful.me/"
+            className={styles.primaryAction}
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={prefersReducedMotion ? undefined : { y: -3 }}
+            whileTap={prefersReducedMotion ? undefined : { scale: 0.98 }}
+          >
+            Shop Merch
+          </motion.a>
+
+          <motion.div
+            whileHover={prefersReducedMotion ? undefined : { y: -3 }}
+            whileTap={prefersReducedMotion ? undefined : { scale: 0.98 }}
+          >
+            <Link href="/arsenal" className={styles.secondaryAction}>
+              Check the Arsenal
+            </Link>
+          </motion.div>
+        </div>
+      </motion.div>
+
+      <motion.dl
+        className={styles.stats}
+        initial={prefersReducedMotion ? false : { opacity: 0, y: 28 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.45, duration: 0.65 }}
+        aria-label="Rapidfire Rachel audience statistics"
+      >
+        {stats.map((stat) => (
+          <div className={styles.stat} key={stat.label}>
+            <dt className={styles.statLabel}>{stat.label}</dt>
+            <dd className={styles.statValue}>{stat.value}</dd>
+          </div>
+        ))}
+      </motion.dl>
     </section>
   )
 }
